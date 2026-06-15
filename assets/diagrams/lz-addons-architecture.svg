@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 600" font-family="Figtree, Arial, sans-serif" role="img" aria-label="OCI Operating Entities Landing Zone with observability add-ons that attach after deploy">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+    </marker>
+    <style>
+      .t  { font-family: Georgia, 'Times New Roman', serif; }
+      .tag{ font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: .06em; font-weight: 700; }
+      .svc{ font-size: 11px; }
+      .mut{ fill: #5A6160; }
+    </style>
+  </defs>
+
+  <rect width="1180" height="600" fill="#FBF9F8"/>
+
+  <!-- Title -->
+  <text class="t" x="40" y="40" font-size="23" fill="#2A2F2F">Deploy the Landing Zone first — add observability add-ons after, per customer need.</text>
+  <text x="40" y="64" font-size="13" class="mut">Steps 1 → 2. The OE Landing Zone is the secure base; each add-on enables independently on top of it.</text>
+
+  <!-- Add-on cards -->
+  <!-- L0 -->
+  <g transform="translate(40,92)">
+    <rect width="200" height="172" rx="12" fill="#E3ECEB" stroke="#315357" stroke-width="1.5"/>
+    <text class="tag" x="18" y="30" fill="#315357">L0 · GOVERN &amp; LAND</text>
+    <text class="t" x="18" y="54" font-size="15" fill="#2A2F2F">Foundation &amp; guardrails</text>
+    <circle cx="22" cy="84" r="3" fill="#315357"/><text class="svc" x="32" y="88" fill="#2A2F2F">Observability compartment &amp; IAM</text>
+    <circle cx="22" cy="108" r="3" fill="#315357"/><text class="svc" x="32" y="112" fill="#2A2F2F">Tags · Vault · Audit</text>
+    <text class="svc mut" x="18" y="150">Establish once, govern always</text>
+  </g>
+  <!-- L1 -->
+  <g transform="translate(262,92)">
+    <rect width="200" height="172" rx="12" fill="#DCE7EC" stroke="#04536F" stroke-width="1.5"/>
+    <text class="tag" x="18" y="30" fill="#04536F">L1 · SEE &amp; ALERT</text>
+    <text class="t" x="18" y="54" font-size="15" fill="#2A2F2F">Foundation telemetry</text>
+    <circle cx="22" cy="84" r="3" fill="#04536F"/><text class="svc" x="32" y="88" fill="#2A2F2F">Monitoring · Logging</text>
+    <circle cx="22" cy="108" r="3" fill="#04536F"/><text class="svc" x="32" y="112" fill="#2A2F2F">Notifications · Events</text>
+    <text class="svc mut" x="18" y="150">Healthy? What happened?</text>
+  </g>
+  <!-- L2 -->
+  <g transform="translate(484,92)">
+    <rect width="200" height="172" rx="12" fill="#FBF1D8" stroke="#C58C52" stroke-width="1.5"/>
+    <text class="tag" x="18" y="30" fill="#A8702F">L2 · DIAGNOSE DEEP</text>
+    <text class="t" x="18" y="54" font-size="15" fill="#2A2F2F">Database &amp; analysis</text>
+    <circle cx="22" cy="84" r="3" fill="#C58C52"/><text class="svc" x="32" y="88" fill="#2A2F2F">DB Management · Ops Insights</text>
+    <circle cx="22" cy="108" r="3" fill="#C58C52"/><text class="svc" x="32" y="112" fill="#2A2F2F">Log Analytics · Mgmt Agent</text>
+    <text class="svc mut" x="18" y="150">Why? Capacity risk?</text>
+  </g>
+  <!-- L3 -->
+  <g transform="translate(706,92)">
+    <rect width="200" height="172" rx="12" fill="#F6E1DC" stroke="#C74634" stroke-width="1.5"/>
+    <text class="tag" x="18" y="30" fill="#C74634">L3 · CORRELATE &amp; AUTOMATE</text>
+    <text class="t" x="18" y="54" font-size="15" fill="#2A2F2F">End-to-end &amp; proactive</text>
+    <circle cx="22" cy="84" r="3" fill="#C74634"/><text class="svc" x="32" y="88" fill="#2A2F2F">APM + OpenTelemetry</text>
+    <circle cx="22" cy="108" r="3" fill="#C74634"/><text class="svc" x="32" y="112" fill="#2A2F2F">Connector Hub · Automation</text>
+    <text class="svc mut" x="18" y="150">Business impact? Auto-fix?</text>
+  </g>
+  <!-- L4 -->
+  <g transform="translate(928,92)">
+    <rect width="200" height="172" rx="12" fill="#E8E1E5" stroke="#6C3F49" stroke-width="1.5"/>
+    <text class="tag" x="18" y="30" fill="#6C3F49">L4 · OBSERVE &amp; GOVERN AI</text>
+    <text class="t" x="18" y="54" font-size="15" fill="#2A2F2F">AI agents</text>
+    <circle cx="22" cy="84" r="3" fill="#6C3F49"/><text class="svc" x="32" y="88" fill="#2A2F2F">Tracing · LLM-as-a-judge</text>
+    <circle cx="22" cy="108" r="3" fill="#6C3F49"/><text class="svc" x="32" y="112" fill="#2A2F2F">Anomaly detect · Zero Trust</text>
+    <text class="svc mut" x="18" y="150">Correct? Safe? Improving?</text>
+  </g>
+
+  <!-- Connectors (attach after deploy) -->
+  <g stroke-dasharray="5 4" stroke-width="1.5" opacity="0.7">
+    <g color="#315357" stroke="#315357"><line x1="140" y1="264" x2="140" y2="400" marker-end="url(#arr)"/></g>
+    <g color="#04536F" stroke="#04536F"><line x1="362" y1="264" x2="362" y2="400" marker-end="url(#arr)"/></g>
+    <g color="#C58C52" stroke="#C58C52"><line x1="584" y1="264" x2="584" y2="400" marker-end="url(#arr)"/></g>
+    <g color="#C74634" stroke="#C74634"><line x1="806" y1="264" x2="806" y2="400" marker-end="url(#arr)"/></g>
+    <g color="#6C3F49" stroke="#6C3F49"><line x1="1028" y1="264" x2="1028" y2="400" marker-end="url(#arr)"/></g>
+  </g>
+
+  <!-- attach pill -->
+  <g transform="translate(470,300)">
+    <rect width="240" height="30" rx="15" fill="#fff" stroke="#D2C7BD"/>
+    <text x="120" y="20" text-anchor="middle" font-size="12" fill="#5A6160">attach after deploy · per customer need</text>
+  </g>
+
+  <!-- Base: OE Landing Zone -->
+  <rect x="40" y="404" width="1088" height="150" rx="16" fill="#DCE7EC" stroke="#04536F" stroke-width="2"/>
+  <text class="t" x="64" y="440" font-size="18" fill="#04536F">OCI Operating Entities (OE) Landing Zone</text>
+  <text x="64" y="460" font-size="12" class="mut">The secure foundation — deployed first, then extended by add-ons. No teardown.</text>
+  <g font-size="12" fill="#2A2F2F">
+    <g transform="translate(64,474)"><rect width="196" height="62" rx="8" fill="#fff" stroke="#A9C0CC"/><text x="98" y="30" text-anchor="middle" font-weight="600">Compartments</text><text x="98" y="48" text-anchor="middle" class="mut" font-size="10.5">topology &amp; tenancy</text></g>
+    <g transform="translate(276,474)"><rect width="196" height="62" rx="8" fill="#fff" stroke="#A9C0CC"/><text x="98" y="30" text-anchor="middle" font-weight="600">VCN &amp; network</text><text x="98" y="48" text-anchor="middle" class="mut" font-size="10.5">private endpoints</text></g>
+    <g transform="translate(488,474)"><rect width="196" height="62" rx="8" fill="#fff" stroke="#A9C0CC"/><text x="98" y="30" text-anchor="middle" font-weight="600">IAM &amp; Identity Domains</text><text x="98" y="48" text-anchor="middle" class="mut" font-size="10.5">least privilege</text></g>
+    <g transform="translate(700,474)"><rect width="196" height="62" rx="8" fill="#fff" stroke="#A9C0CC"/><text x="98" y="30" text-anchor="middle" font-weight="600">Guardrails</text><text x="98" y="48" text-anchor="middle" class="mut" font-size="10.5">ZPR · Security Zones</text></g>
+    <g transform="translate(912,474)"><rect width="196" height="62" rx="8" fill="#fff" stroke="#A9C0CC"/><text x="98" y="30" text-anchor="middle" font-weight="600">Vault &amp; secrets</text><text x="98" y="48" text-anchor="middle" class="mut" font-size="10.5">keys &amp; credentials</text></g>
+  </g>
+
+  <!-- Footnote -->
+  <text x="40" y="584" font-size="12.5" class="mut">Each add-on enables independently after the Landing Zone is live — no rebuild. Pick only what each use case needs.</text>
+</svg>

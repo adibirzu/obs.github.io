@@ -249,6 +249,12 @@ body.no-scroll { overflow: hidden; }
 .lzaddon { border: 1px dashed var(--border-default); border-radius: var(--radius-md); padding: var(--space-2) var(--space-3); font-size: var(--text-sm); display: flex; align-items: center; gap: var(--space-2); background: var(--surface-page); }
 .lzaddon .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
 
+.lzfig { margin: var(--space-7) 0 0; }
+.lzfig img { width: 100%; height: auto; display: block; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); background: var(--surface-card); box-shadow: var(--shadow-sm); }
+.lzfig figcaption { margin-top: var(--space-3); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-5); font-size: var(--text-sm); color: var(--text-muted); }
+.lzfig__src { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-subtle); }
+.lzfig__src a { font-weight: var(--weight-semibold); }
+
 /* ---------- Maturity ---------- */
 .matgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
 @media (max-width: 860px) { .matgrid { grid-template-columns: 1fr 1fr; } }
@@ -394,6 +400,10 @@ button.dchip:hover { border-color: var(--l4); background: var(--surface-card); b
 .resgroup a { font-size: var(--text-sm); font-weight: var(--weight-semibold); line-height: var(--leading-snug); display: inline-flex; align-items: baseline; gap: var(--space-1); }
 .resgroup a .lucide { font-size: 12px; color: var(--text-subtle); flex: none; align-self: center; }
 .resgroup span { font-size: var(--text-xs); color: var(--text-muted); }
+.projlabel { display: flex; align-items: center; gap: var(--space-1); font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: .04em; text-transform: uppercase; color: var(--text-subtle); margin: var(--space-4) 0 var(--space-3); padding-top: var(--space-3); border-top: 1px dashed var(--border-subtle); }
+.projlabel .lucide { font-size: 13px; }
+.resgroup .projlist { gap: var(--space-3); }
+.resgroup .projlist a .lucide, .ilearn a .lucide { color: var(--text-body); }
 
 /* ---------- Footer ---------- */
 .foot { background: var(--surface-inverse); color: var(--stone-200); padding: var(--space-8) 0 var(--space-6); position: relative; z-index: 1; }

@@ -53,6 +53,7 @@
     "gauge": '<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>',
     "scale": '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>',
     "shield-half": '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 22V2"/>',
+    "github": '<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 4 5 4 5 4c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 11c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>',
   };
   function ic(name) {
     return `<svg class="lucide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${LU[name] || ""}</svg>`;
@@ -480,19 +481,24 @@ graph.add_node("explain",   call_generative_ai_summary)
 
   /* ---- Learn-more resources (from assets/resources.js) ---- */
   const RES = window.OBS_RESOURCES || [];
-  const COMP_RES = {};
-  RES.forEach((g) => { if (g.comp) COMP_RES[g.comp] = g.items; });
+  const COMP_RES = {}, COMP_PROJ = {};
+  RES.forEach((g) => {
+    if (!g.comp) return;
+    if (g.items && g.items.length) COMP_RES[g.comp] = (COMP_RES[g.comp] || []).concat(g.items);
+    if (g.projects && g.projects.length) COMP_PROJ[g.comp] = (COMP_PROJ[g.comp] || []).concat(g.projects);
+  });
   if (COMP_RES.apm) COMP_RES.ai_apm = COMP_RES.apm;          // AI tracing reuses APM reading
   if (COMP_RES.analyze) COMP_RES.ai_logan = COMP_RES.analyze; // AI anomaly reuses Log Analytics
   const resItem = (r) => `<li><a href="${r.url}" target="_blank" rel="noopener">${r.title} ${ic("external-link")}</a><span>${r.summary}</span></li>`;
+  const projItem = (r) => `<li><a href="${r.url}" target="_blank" rel="noopener">${ic("github")} ${r.title}</a><span>${r.summary}</span></li>`;
 
   function buildResources() {
     const host = $("#resList"); if (!host) return;
-    host.innerHTML = RES.map((g) => `
-      <article class="resgroup">
-        <h3>${g.label}</h3>
-        <ul>${g.items.map(resItem).join("")}</ul>
-      </article>`).join("");
+    host.innerHTML = RES.map((g) => {
+      const items = (g.items && g.items.length) ? `<ul>${g.items.map(resItem).join("")}</ul>` : "";
+      const proj = (g.projects && g.projects.length) ? `<p class="projlabel">${ic("github")} Open-source projects</p><ul class="projlist">${g.projects.map(projItem).join("")}</ul>` : "";
+      return `<article class="resgroup"><h3>${g.label}</h3>${items}${proj}</article>`;
+    }).join("");
   }
 
   /* ---- Build the ladder ---- */
@@ -554,8 +560,10 @@ graph.add_node("explain",   call_generative_ai_summary)
         <pre><code>${hl(c.code.body)}</code></pre>
       </div>`;
     $("#i-docs").href = c.docs;
-    const rs = COMP_RES[id];
-    $("#i-resources").innerHTML = rs ? `<h4 class="ilearn__h">Learn more</h4><ul class="ilearn">${rs.map(resItem).join("")}</ul>` : "";
+    const rs = COMP_RES[id], pr = COMP_PROJ[id];
+    $("#i-resources").innerHTML = (rs || pr)
+      ? `<h4 class="ilearn__h">Learn more</h4>${rs ? `<ul class="ilearn">${rs.map(resItem).join("")}</ul>` : ""}${pr ? `<p class="projlabel">${ic("github")} Projects by @adibirzu</p><ul class="ilearn">${pr.map(projItem).join("")}</ul>` : ""}`
+      : "";
     selectLens(0);
 
     $("#i-copy").addEventListener("click", (e) => {

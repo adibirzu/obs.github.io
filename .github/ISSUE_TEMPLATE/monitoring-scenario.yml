@@ -1,0 +1,80 @@
+name: "Monitoring scenario"
+description: "Propose a new OCI observability scenario to add to the Atlas"
+title: "[Scenario] <short name>"
+labels: ["scenario", "observability"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing a scenario! See **[docs/PROPOSE-A-SCENARIO.md](../blob/main/docs/PROPOSE-A-SCENARIO.md)** for what makes a strong one.
+        Keep it concrete and service-oriented — start from the workload, then work down to telemetry.
+        **Do not include** secrets, OCIDs, public IPs, tenancy namespaces, or customer data.
+  - type: input
+    id: workload
+    attributes:
+      label: Workload / business service
+      description: What runs, and where (Compute / OKE / Exadata / Autonomous DB / hybrid / agentic)?
+      placeholder: "Oracle E-Business Suite on Compute with an Exadata database"
+    validations:
+      required: true
+  - type: dropdown
+    id: pattern
+    attributes:
+      label: Closest finder pattern
+      options:
+        - Traditional enterprise application
+        - Oracle database-centric workload
+        - Cloud-native on OKE
+        - Oracle applications and middleware
+        - Hybrid enterprise estate
+        - Agentic / generative-AI workload
+        - Other (describe below)
+    validations:
+      required: true
+  - type: dropdown
+    id: entry
+    attributes:
+      label: Entry level
+      description: Where should adoption start?
+      options: ["L0 — Govern & land", "L1 — See & alert", "L2 — Diagnose deep", "L3 — Correlate & automate", "L4 — Observe & govern AI"]
+    validations:
+      required: true
+  - type: textarea
+    id: services
+    attributes:
+      label: Services to enable (in order), as Landing Zone add-ons
+      description: List the O&M/AI services this workload needs and why. Note how each enables after the LZ is live.
+      placeholder: |
+        - L1 OCI Monitoring — availability + saturation alarms (no agent)
+        - L2 Database Management — Performance Hub + top SQL (Full, private endpoint)
+        - L3 APM + OpenTelemetry — end-to-end trace for the checkout path
+    validations:
+      required: true
+  - type: textarea
+    id: signals
+    attributes:
+      label: Key signals, alarms, dashboards
+      description: The signals that make it actionable, the alarms (with severity + runbook), and the dashboards (with owner).
+    validations:
+      required: true
+  - type: input
+    id: agent
+    attributes:
+      label: Collection agent
+      placeholder: "Management Agent — external database target"
+  - type: textarea
+    id: references
+    attributes:
+      label: References (public links only)
+      description: DevRel guides, blogs, OCI docs, or open-source repos that support this scenario.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-submit checks
+      options:
+        - label: Starts from a workload, not a tool, with a minimal service path.
+          required: true
+        - label: Every service framed as an add-on that enables after the Landing Zone is live.
+          required: true
+        - label: No secrets, OCIDs, public IPs, tenancy namespaces, or customer data included.
+          required: true

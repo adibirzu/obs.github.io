@@ -444,27 +444,56 @@ graph.add_node("explain",   call_generative_ai_summary)
   /* ---- Use-case patterns ---- */
   const PATTERNS = {
     trad: { name: "Traditional enterprise application", icon: "boxes",
+      detail: "A load balancer fronts web and application tiers, middleware, and one or more Oracle databases, with batch jobs and integrations behind them. The database tier usually decides reliability, so observability has to span the application and the database as one picture.",
       start: "Start at L1, then make L2 — the database layer — your priority.",
+      outcomes: ["An end-to-end trace from the web tier to the SQL that served the request", "Database fleet health, top SQL, and wait events beside application latency", "Capacity forecasts that prevent storage and CPU surprises"],
       path: ["metric","log","analyze","db","insight","apm","audit","bell"] },
     dbc: { name: "Oracle database-centric workload", icon: "database",
+      detail: "Exadata, Autonomous AI Database, Base Database, and Data Guard carry the workload, often with external or on-premises databases in the mix. The priority is deep database diagnosis in the moment and capacity intelligence over time.",
       start: "L2 is the centre of gravity. Lead with Database Management and Ops Insights.",
+      outcomes: ["Performance Hub, SQL, sessions, and wait analysis on the critical databases", "Capacity and SQL trends with forecasted exhaustion dates", "Hybrid reach to external databases through the Management Agent"],
       path: ["db","insight","metric","log","agent","audit","bell"] },
     oke: { name: "Cloud-native on OKE", icon: "boxes",
+      detail: "Microservices on OKE call each other through an API Gateway, with Streaming and Autonomous AI Database behind them. A single request crosses many services, so distributed tracing and log correlation are non-negotiable from day one.",
       start: "Pair L1 with L3 tracing early. Adopt OpenTelemetry from day one.",
+      outcomes: ["One trace per request across every microservice and database call", "Pod, node, and namespace metrics with anomaly detection on logs", "Telemetry routed once — to OCI and an open-source backend together"],
       path: ["apm","metric","log","analyze","db","insight","event","bell","hub"] },
     apps: { name: "Oracle applications and middleware", icon: "layers",
+      detail: "E-Business Suite, JD Edwards, PeopleSoft, WebLogic, SOA, and Fusion Middleware run on substantial infrastructure with heavy database dependencies. Instrument what you can with APM, and lean on logs and database depth for the rest.",
       start: "L1 and L2 first; add APM where instrumentation is feasible. Treat Stack Monitoring as transitional only.",
+      outcomes: ["Drill-downs from application performance into the supporting database", "Log Analytics parsers and dashboards tuned to the application stack", "A documented transition off Stack Monitoring before its deprecation"],
       path: ["metric","log","analyze","apm","db","insight","agent"] },
     hybrid: { name: "Hybrid enterprise estate", icon: "cloud",
+      detail: "OCI runs alongside on-premises databases and applications, third-party tools, and an existing ITSM platform. The Management Agent and Gateway are the bridge that brings external telemetry into OCI securely.",
       start: "Lead with the Management Agent and Gateway, then add the full stack.",
+      outcomes: ["External hosts and databases collected through agents and gateways", "Connector Hub pipelines into analytics, archive, and the SIEM", "A single incident process spanning cloud and on-premises"],
       path: ["agent","metric","log","analyze","db","insight","event","bell","hub"] },
     agentic: { name: "Agentic and generative-AI workload", icon: "bot",
+      detail: "Autonomous agents reason probabilistically, call tools and other agents, and drift silently as models and prompts change. They need tracing, continuous evaluation, and Zero Trust enforcement — not just the three pillars.",
       start: "This is the L4 path. Instrument with OpenTelemetry GenAI, judge with Generative AI, and govern with Zero Trust.",
+      outcomes: ["Every reasoning step, tool call, and model call as a followable span", "Output quality and safety scored continuously with LLM-as-a-judge", "Gated, reversible change with anomaly detection and Zero Trust policy"],
       path: ["ai_apm","metric","log","ai_logan","ai_genai","ai_eval","ai_loop","ai_cgis","ai_agents"] },
   };
 
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  /* ---- Learn-more resources (from assets/resources.js) ---- */
+  const RES = window.OBS_RESOURCES || [];
+  const COMP_RES = {};
+  RES.forEach((g) => { if (g.comp) COMP_RES[g.comp] = g.items; });
+  if (COMP_RES.apm) COMP_RES.ai_apm = COMP_RES.apm;          // AI tracing reuses APM reading
+  if (COMP_RES.analyze) COMP_RES.ai_logan = COMP_RES.analyze; // AI anomaly reuses Log Analytics
+  const resItem = (r) => `<li><a href="${r.url}" target="_blank" rel="noopener">${r.title} ${ic("external-link")}</a><span>${r.summary}</span></li>`;
+
+  function buildResources() {
+    const host = $("#resList"); if (!host) return;
+    host.innerHTML = RES.map((g) => `
+      <article class="resgroup">
+        <h3>${g.label}</h3>
+        <ul>${g.items.map(resItem).join("")}</ul>
+      </article>`).join("");
+  }
 
   /* ---- Build the ladder ---- */
   function buildLadder() {
@@ -525,6 +554,8 @@ graph.add_node("explain",   call_generative_ai_summary)
         <pre><code>${hl(c.code.body)}</code></pre>
       </div>`;
     $("#i-docs").href = c.docs;
+    const rs = COMP_RES[id];
+    $("#i-resources").innerHTML = rs ? `<h4 class="ilearn__h">Learn more</h4><ul class="ilearn">${rs.map(resItem).join("")}</ul>` : "";
     selectLens(0);
 
     $("#i-copy").addEventListener("click", (e) => {
@@ -573,7 +604,10 @@ graph.add_node("explain",   call_generative_ai_summary)
   function runFinder(key) {
     const p = PATTERNS[key], res = $("#finderResult");
     $("#fr-name").textContent = p.name;
+    $("#fr-detail").textContent = p.detail || "";
     $("#fr-start").textContent = p.start;
+    $("#fr-outcomes").innerHTML = (p.outcomes || []).map((o) =>
+      `<li>${ic("check")}<span>${o}</span></li>`).join("");
     const path = $("#fr-path"); path.innerHTML = "";
     p.path.forEach((id, i) => {
       const c = C[id], lv = LEVELS[c.level];
@@ -631,6 +665,7 @@ graph.add_node("explain",   call_generative_ai_summary)
   document.addEventListener("DOMContentLoaded", () => {
     buildLadder();
     buildFinder();
+    buildResources();
     scrollFx();
     $("#i-close").addEventListener("click", closeInspector);
     scrim.addEventListener("click", closeInspector);

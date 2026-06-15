@@ -165,7 +165,13 @@ body.no-scroll { overflow: hidden; }
 .finder__result.show { display: block; animation: rise var(--duration-base) var(--ease-out); }
 @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .finder__result h3 { font-size: var(--text-2xl); margin: var(--space-1) 0 0; }
-.finder__start { color: var(--text-body); margin: var(--space-3) 0 0; }
+.finder__detail { color: var(--text-muted); margin: var(--space-3) 0 0; max-width: 70ch; }
+.finder__outcomes { list-style: none; margin: var(--space-4) 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2) var(--space-5); }
+@media (max-width: 680px) { .finder__outcomes { grid-template-columns: 1fr; } }
+.finder__outcomes li { display: flex; gap: var(--space-2); align-items: flex-start; font-size: var(--text-sm); color: var(--text-body); }
+.finder__outcomes .lucide { color: var(--success); flex: none; font-size: 16px; margin-top: 2px; }
+.finder__start { color: var(--text-body); font-weight: var(--weight-semibold); margin: var(--space-5) 0 0; padding: var(--space-3) var(--space-4); background: var(--blue-tint); border-radius: var(--radius-md); border-left: 3px solid var(--action-secondary); }
+.path-label { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .06em; text-transform: uppercase; color: var(--text-subtle); margin: var(--space-5) 0 0; }
 .path { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); align-items: center; }
 .pathchip {
   display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-body); font-size: var(--text-sm);
@@ -368,6 +374,26 @@ button.dchip:hover { border-color: var(--l4); background: var(--surface-card); b
 .codeblock .k { color: var(--ochre); }
 
 .idocs { display: inline-flex; align-items: center; gap: var(--space-2); margin-top: var(--space-5); font-size: var(--text-sm); font-weight: var(--weight-semibold); }
+
+/* inspector learn-more */
+.ilearn__h { font-family: var(--font-body); font-weight: var(--weight-bold); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-caps); color: var(--text-subtle); margin: var(--space-6) 0 var(--space-3); padding-top: var(--space-4); border-top: 1px solid var(--border-subtle); }
+.ilearn { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.ilearn li { display: flex; flex-direction: column; gap: 2px; }
+.ilearn a { font-size: var(--text-sm); font-weight: var(--weight-semibold); display: inline-flex; align-items: center; gap: var(--space-1); }
+.ilearn a .lucide { font-size: 13px; color: var(--text-subtle); flex: none; }
+.ilearn span { font-size: var(--text-xs); color: var(--text-muted); }
+
+/* ---------- Resources section ---------- */
+.reslist { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+@media (max-width: 920px) { .reslist { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .reslist { grid-template-columns: 1fr; } }
+.resgroup { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-5); }
+.resgroup h3 { font-family: var(--font-body); font-weight: var(--weight-bold); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-caps); color: var(--text-brand); margin: 0 0 var(--space-4); }
+.resgroup ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-4); }
+.resgroup li { display: flex; flex-direction: column; gap: 2px; }
+.resgroup a { font-size: var(--text-sm); font-weight: var(--weight-semibold); line-height: var(--leading-snug); display: inline-flex; align-items: baseline; gap: var(--space-1); }
+.resgroup a .lucide { font-size: 12px; color: var(--text-subtle); flex: none; align-self: center; }
+.resgroup span { font-size: var(--text-xs); color: var(--text-muted); }
 
 /* ---------- Footer ---------- */
 .foot { background: var(--surface-inverse); color: var(--stone-200); padding: var(--space-8) 0 var(--space-6); position: relative; z-index: 1; }

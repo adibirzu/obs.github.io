@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="OCI Observability Atlas — a guided path from L0 (govern and land) to L3 (correlate and automate). Find the right Oracle Cloud Infrastructure Observability and Management services for your use case, each deployable as an add-on to your OCI Landing Zone." />
+  <meta name="description" content="OCI Observability Atlas — a guided path from L0 (govern and land) through L4 (observe and govern AI agents). Find the right Oracle Cloud Infrastructure Observability and Management services for your use case, each deployable as an add-on to your OCI Landing Zone." />
   <meta name="theme-color" content="#FBF9F8" />
-  <title>OCI Observability Atlas — a guided path from L0 to L3</title>
+  <title>OCI Observability Atlas — a guided path from L0 to L4</title>
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FBF9F8'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%2304536F' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23C74634'/%3E%3C/svg%3E" />
 
@@ -128,7 +128,10 @@
         <div class="finder__result reveal" id="finderResult" role="region" aria-live="polite">
           <span class="eyebrow">Recommended path</span>
           <h3 id="fr-name">—</h3>
+          <p class="finder__detail" id="fr-detail"></p>
+          <ul class="finder__outcomes" id="fr-outcomes"></ul>
           <p class="finder__start" id="fr-start"></p>
+          <div class="path-label">Add these services, in order</div>
           <div class="path" id="fr-path"></div>
           <p class="finder__foot">
             <button class="linkbtn" id="finderClear" type="button"><svg class="lucide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> Clear and show all</button>
@@ -414,6 +417,18 @@
         </div>
       </div>
     </section>
+    <!-- ============ RESOURCES ============ -->
+    <section class="section section--sunken" id="resources">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">Learn more</span>
+          <h2>Hands-on guides, demos, and articles</h2>
+          <p>Curated from the Oracle DevRel technology-engineering observability library, the OCI Observability blog, and team publications. Open any service in the ladder to see the relevant links inline.</p>
+        </div>
+        <div class="reslist reveal" id="resList"></div>
+      </div>
+    </section>
+
     <!-- ============ REFERENCE IMPLEMENTATION ============ -->
     <section class="section" id="reference">
       <div class="wrap">
@@ -471,6 +486,7 @@
             <li><a href="#ladder">The L0 to L4 ladder</a></li>
             <li><a href="#agents">Choosing an agent</a></li>
             <li><a href="#ai">AI agent observability</a></li>
+            <li><a href="#resources">Guides and articles</a></li>
             <li><a href="#reference">Reference implementation</a></li>
             <li><a href="https://github.com/adibirzu/octo-observability-demo">OCTO observability demo</a></li>
           </ul>
@@ -513,9 +529,11 @@
       <div class="lenspanel" role="tabpanel"><h4>Hands-on</h4><div id="i-prac"></div></div>
 
       <a class="idocs" id="i-docs" href="#" target="_blank" rel="noopener">Official documentation <svg class="lucide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
+      <div id="i-resources"></div>
     </div>
   </aside>
 
+  <script src="assets/resources.js"></script>
   <script src="assets/guide.js"></script>
 </body>
 </html>

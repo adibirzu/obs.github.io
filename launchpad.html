@@ -501,6 +501,51 @@
                 </div>
             </div>
 
+            <!-- ===== Persona + Industry (parity with the main guide) ===== -->
+            <section class="lp-section" id="lp-start" aria-labelledby="lp-start-h">
+                <div class="lp-section__head">
+                    <span class="lp-kicker">Start with you</span>
+                    <h2 id="lp-start-h">Tailor the launchpad to your role and industry</h2>
+                    <p>Pick who you are and where you work — we'll highlight the levels, services, and the lens to start from. Access to every view is governed by <strong>OCI IAM</strong>: each persona maps to an OCI Group with policies scoped to the right compartments.</p>
+                </div>
+                <div class="start__grid">
+                    <div class="start__col"><h3 class="start__label">I am a…</h3><div class="pickrow" id="personaPick"></div></div>
+                    <div class="start__col"><h3 class="start__label">In…</h3><div class="pickrow" id="industryPick"></div></div>
+                </div>
+                <div class="start__result" id="startResult" role="region" aria-live="polite"></div>
+            </section>
+
+            <!-- ===== Follow the path: L0 → L5 ===== -->
+            <section class="lp-section" id="lp-path-sec" aria-labelledby="lp-path-h">
+                <div class="lp-section__head">
+                    <span class="lp-kicker">Follow the path</span>
+                    <h2 id="lp-path-h">From govern to multitenancy — in order</h2>
+                    <p>Each level builds on the last. Jump straight to the launchpad module that delivers it, or open the full ladder in the guide.</p>
+                </div>
+                <ol class="lp-path" aria-label="L0 to L5 observability path">
+                    <li class="lp-step" style="--lv:var(--l0)"><button type="button" class="lp-step__btn" data-href="index.html#lvl-L0"><span class="lp-step__lv">L0</span><span class="lp-step__t">Govern &amp; land</span><span class="lp-step__d">Compartments, IAM, tags, Vault, Audit</span><span class="lp-step__to">Open in guide ↗</span></button></li>
+                    <li class="lp-step" style="--lv:var(--l1)"><button type="button" class="lp-step__btn" data-module="monitoring"><span class="lp-step__lv">L1</span><span class="lp-step__t">See &amp; alert</span><span class="lp-step__d">Monitoring, Logging, alarms, dashboards</span><span class="lp-step__to">Monitoring →</span></button></li>
+                    <li class="lp-step" style="--lv:var(--l2)"><button type="button" class="lp-step__btn" data-module="loganalytics"><span class="lp-step__lv">L2</span><span class="lp-step__t">Diagnose deep</span><span class="lp-step__d">Log Analytics, DB Management, Ops Insights</span><span class="lp-step__to">Log Analytics →</span></button></li>
+                    <li class="lp-step" style="--lv:var(--l3)"><button type="button" class="lp-step__btn" data-module="apm"><span class="lp-step__lv">L3</span><span class="lp-step__t">Correlate &amp; automate</span><span class="lp-step__d">APM + OpenTelemetry, Connector Hub</span><span class="lp-step__to">APM →</span></button></li>
+                    <li class="lp-step" style="--lv:var(--l4)"><button type="button" class="lp-step__btn" data-module="ai"><span class="lp-step__lv">L4</span><span class="lp-step__t">Observe &amp; govern AI</span><span class="lp-step__d">APM GenAI, judge + guardrails, evaluation</span><span class="lp-step__to">AI observability →</span></button></li>
+                    <li class="lp-step" style="--lv:var(--l5)"><button type="button" class="lp-step__btn" data-href="index.html#multitenancy"><span class="lp-step__lv">L5</span><span class="lp-step__t">Operate multitenancy</span><span class="lp-step__d">Central Log Analytics aggregation, isolation</span><span class="lp-step__to">Open in guide ↗</span></button></li>
+                </ol>
+            </section>
+
+            <!-- ===== Persona view: how each role uses the data ===== -->
+            <section class="lp-section" id="lp-personas" aria-labelledby="lp-personas-h">
+                <div class="lp-section__head">
+                    <span class="lp-kicker">Persona view</span>
+                    <h2 id="lp-personas-h">How each role identifies and uses the data</h2>
+                    <p>Same eight personas as the guide — what each one looks for, and the OCI services they live in.</p>
+                </div>
+                <div class="pgrid" id="personaGrid"></div>
+            </section>
+
+            <div class="lp-section__head" style="margin-bottom:1rem">
+                <span class="lp-kicker">Quick jump</span>
+                <h2>Recommended starting points</h2>
+            </div>
             <div class="persona-grid" aria-label="Recommended starting points by persona">
                 <button type="button" class="persona-card" data-module="monitoring">
                     <span class="persona-kicker">Platform engineering</span>
@@ -6548,9 +6593,19 @@ def call_inventory_service():
         </div>
     </div>
 
+    <!-- Persona + Industry selector / persona view (shared with the main guide) -->
+    <script src="assets/personas.js" defer></script>
     <script src="static/observability.js" defer></script>
     <!-- Further reading: curated OCI O&M articles + demos (shared catalog) -->
     <script src="assets/resources.js"></script>
     <script src="assets/launchpad-resources.js"></script>
+    <script>
+      /* Launchpad "follow the path" — steps without a module open the guide. */
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".lp-step__btn[data-href]").forEach((b) => {
+          b.addEventListener("click", () => { window.location.href = b.dataset.href; });
+        });
+      });
+    </script>
 </body>
 </html>

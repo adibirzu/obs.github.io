@@ -106,9 +106,13 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   let chosen = { persona: null, industry: null };
 
+  // When the ladder/finder anchors are not on this page (e.g. the launchpad),
+  // cross-link back to the main guide instead of producing dead in-page links.
+  const xref = () => (document.getElementById("lvl-L0") ? "" : "index.html");
+
   function lvlChip(k) {
     const l = LVL[k]; if (!l) return "";
-    return `<a class="lvlchip" href="${l.anchor}" style="--lv:${l.color}"><span class="dot"></span>${l.label}</a>`;
+    return `<a class="lvlchip" href="${xref()}${l.anchor}" style="--lv:${l.color}"><span class="dot"></span>${l.label}</a>`;
   }
 
   function buildSelector() {
@@ -143,8 +147,10 @@
       <div class="start__levels">${levels.map(lvlChip).join("")}</div>
       ${p ? `<div class="start__svc"><span class="start__k">You'll mostly look at</span> ${p.services.map((s) => `<span class="tag">${s}</span>`).join("")}</div>` : ""}
       <div class="start__cta">
-        ${d ? `<button class="linkbtn" id="startToFinder" type="button" data-uc="${d.pattern}">See the ${d.name} use-case path ${arrow()}</button>` : ""}
-        ${p ? `<a class="linkbtn" href="#personas">How your persona uses the data ${arrow()}</a>` : ""}
+        ${d ? (xref()
+          ? `<a class="linkbtn" href="index.html#finder">See the ${d.name} use-case path ${arrow()}</a>`
+          : `<button class="linkbtn" id="startToFinder" type="button" data-uc="${d.pattern}">See the ${d.name} use-case path ${arrow()}</button>`) : ""}
+        ${p ? `<a class="linkbtn" href="${xref()}#personas">How your persona uses the data ${arrow()}</a>` : ""}
       </div>`;
     res.classList.add("show");
     const f = $("#startToFinder");

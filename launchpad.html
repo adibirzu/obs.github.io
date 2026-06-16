@@ -542,6 +542,57 @@
                 <div class="pgrid" id="personaGrid"></div>
             </section>
 
+            <!-- ===== Observability extends OCI Security ===== -->
+            <section class="lp-section lp-security" id="lp-security" aria-labelledby="lp-sec-h">
+                <div class="lp-section__head">
+                    <span class="lp-kicker">Security + Observability</span>
+                    <h2 id="lp-sec-h">Observability extends OCI Security — from detection to clarity</h2>
+                    <p>OCI Security tells you <em>something is wrong</em>. Observability tells you <em>what, where, and why</em>. The Security portfolio — Cloud Guard, IAM, Data Safe, Access Governance, Audit, Zero Trust Packet Routing — detects and enforces; observability turns those signals into correlated, explainable visibility for SOC and operations teams, and forwards them to whatever security tooling you already run.</p>
+                </div>
+                <div class="lp-flow">
+                    <span class="lp-flow__step"><b>Security detects</b><span>Cloud Guard · IAM · Data Safe · Access Governance · Audit · ZPR</span></span>
+                    <span class="lp-flow__arrow">→</span>
+                    <span class="lp-flow__step"><b>Observability explains</b><span>Log Analytics ML detections · APM traces · dashboards</span></span>
+                    <span class="lp-flow__arrow">→</span>
+                    <span class="lp-flow__step"><b>Teams act</b><span>shared correlated view · faster MTTR · governance</span></span>
+                </div>
+                <div class="lp-sec-grid">
+                    <article class="lp-sec-card">
+                        <span class="lp-sec-tag">Cloud Guard <em>+ Instance Security</em></span>
+                        <p>Tenancy posture &amp; threat detection, plus host-level runtime security. <b>Observability adds:</b> route findings into Log Analytics for ML clustering, MITRE-mapped detections, and investigation.</p>
+                        <a class="linkbtn" href="https://www.oracle.com/security/cloud-security/cloud-guard/" target="_blank" rel="noopener">Cloud Guard ↗</a>
+                    </article>
+                    <article class="lp-sec-card">
+                        <span class="lp-sec-tag">IAM &amp; Identity Domains</span>
+                        <p>Identities, groups, and policies that scope every observability view. <b>Observability adds:</b> a searchable, correlated trail of access and anomalous identity activity from Audit + Log Analytics.</p>
+                        <a class="linkbtn" href="https://docs.oracle.com/en-us/iaas/Content/Identity/home.htm" target="_blank" rel="noopener">IAM docs ↗</a>
+                    </article>
+                    <article class="lp-sec-card">
+                        <span class="lp-sec-tag">Data Safe</span>
+                        <p>Database security posture, user risk, and activity auditing. <b>Observability adds:</b> correlate Data Safe findings with Database Management and Ops Insights to see security and performance together.</p>
+                        <button class="linkbtn" type="button" data-module="dbmgmt">Database Management →</button>
+                    </article>
+                    <article class="lp-sec-card">
+                        <span class="lp-sec-tag">Access Governance</span>
+                        <p>Entitlement reviews, certification, and least-privilege drift. <b>Observability adds:</b> visibility into who has access and how it changes over time, surfaced in dashboards and detections.</p>
+                        <a class="linkbtn" href="https://www.oracle.com/security/cloud-security/access-governance/" target="_blank" rel="noopener">Access Governance ↗</a>
+                    </article>
+                    <article class="lp-sec-card">
+                        <span class="lp-sec-tag">Audit &amp; Zero Trust Packet Routing</span>
+                        <p>Every API call and network intent, captured. <b>Observability adds:</b> a correlated audit trail and ZPR flow visibility with detection dashboards in Log Analytics.</p>
+                        <button class="linkbtn" type="button" data-module="loganalytics">Open Log Analytics →</button>
+                    </article>
+                    <article class="lp-sec-card lp-sec-card--siem">
+                        <span class="lp-sec-tag">Your SIEM — 3rd-party security tools</span>
+                        <p>Keep your existing tooling. <b>Fan out via Service Connector → Streaming / REST API</b> to Splunk, Microsoft Sentinel, Elastic, or Datadog — log shippers and OCI Functions do the bridging.</p>
+                        <span class="lp-sec-links">
+                            <a class="linkbtn" href="https://github.com/adibirzu/oci-splunk" target="_blank" rel="noopener">OCI → Splunk ↗</a>
+                            <a class="linkbtn" href="https://github.com/adibirzu/oci2azurelogs" target="_blank" rel="noopener">OCI → Sentinel ↗</a>
+                        </span>
+                    </article>
+                </div>
+            </section>
+
             <div class="lp-section__head" style="margin-bottom:1rem">
                 <span class="lp-kicker">Quick jump</span>
                 <h2>Recommended starting points</h2>
@@ -6615,24 +6666,42 @@ def call_inventory_service():
           "connector hub": "integrations", "management agent": "integrations",
           "generative ai (judge)": "ai", "data science": "ai"
         };
+        // services with no dedicated module → scroll to a section / open the guide
+        var SVC_TO_HREF = {
+          "cloud guard instance security": "#lp-security",
+          "observability compartment & iam": "index.html#lvl-L0"
+        };
         function go(mod) {
           var nav = document.querySelector('.nav-item[data-module="' + mod + '"]');
           if (nav) { nav.click(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+        }
+        function goHref(href) {
+          if (href.charAt(0) === "#") {
+            var el = document.querySelector(href);
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+          } else { window.location.href = href; }
+        }
+        function actFor(label) {
+          var key = (label || "").trim().toLowerCase();
+          if (SVC_TO_MODULE[key]) return { module: SVC_TO_MODULE[key] };
+          if (SVC_TO_HREF[key]) return { href: SVC_TO_HREF[key] };
+          return null;
         }
         function enhance(scope) {
           if (!scope) return;
           scope.querySelectorAll(".tag").forEach(function (t) {
             if (t.dataset.lpWired) return;
-            var mod = SVC_TO_MODULE[(t.textContent || "").trim().toLowerCase()];
-            if (!mod) return;
+            var act = actFor(t.textContent);
+            if (!act) return;
             t.dataset.lpWired = "1";
             t.classList.add("tag--link");
             t.setAttribute("role", "button");
             t.setAttribute("tabindex", "0");
-            t.setAttribute("title", "Open the " + mod + " module");
-            t.addEventListener("click", function () { go(mod); });
+            t.setAttribute("title", act.module ? "Open the " + act.module + " module" : "Learn more");
+            var run = function () { act.module ? go(act.module) : goHref(act.href); };
+            t.addEventListener("click", run);
             t.addEventListener("keydown", function (e) {
-              if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(mod); }
+              if (e.key === "Enter" || e.key === " ") { e.preventDefault(); run(); }
             });
           });
         }

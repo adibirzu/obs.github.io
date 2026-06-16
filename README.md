@@ -21,6 +21,7 @@ A single-page guide that helps **any user** find the right OCI Observability & M
 - **Collection-agent comparison** — Oracle Cloud Agent vs. Management Agent vs. Unified Monitoring Agent.
 - **AI agent observability (L4)** — the SAIF / Zero Trust / Observability triad and a modern Instrument → Collect → Analyse → Evaluate → Act reference diagram.
 - **Multitenancy at scale (L5)** — centralized Log Analytics aggregation across tenants and clouds, with per-tenant isolation by compartment + IAM (see below).
+- **Security + observability** — observability framed as an extension of OCI Security (Cloud Guard + Instance Security, IAM, Data Safe, Access Governance, Audit, ZPR): Security *detects*, observability *explains* and forwards to 3rd-party SIEMs (Splunk, Microsoft Sentinel, Elastic, Datadog).
 - **Resources** — curated DevRel guides, demos, and the maintainer's public observability projects, mapped per service.
 - **[Interactive launchpad](https://obs.octodemo.cloud/launchpad.html)** — the companion operations console.
 

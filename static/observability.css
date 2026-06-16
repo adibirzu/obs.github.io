@@ -10210,3 +10210,23 @@ a.service-card {
 #startResult .tag--link, #personaGrid .tag--link { cursor: pointer; border-color: color-mix(in srgb, var(--oci-red) 40%, var(--border-subtle)); transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
 #startResult .tag--link::after, #personaGrid .tag--link::after { content: "→"; margin-left: 0.3rem; opacity: 0.55; font-size: 0.85em; }
 #startResult .tag--link:hover, #startResult .tag--link:focus-visible, #personaGrid .tag--link:hover, #personaGrid .tag--link:focus-visible { background: var(--oci-red); color: #fff; border-color: var(--oci-red); outline: none; }
+
+/* Security + Observability section (launchpad) */
+.lp-security .lp-kicker { color: var(--l4); }
+.lp-flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0.5rem; margin-bottom: 1.5rem; }
+.lp-flow__step { flex: 1 1 200px; display: flex; flex-direction: column; gap: 0.2rem; padding: 0.8rem 1rem; background: var(--surface-1); border: 1px solid var(--border-default); border-left: 3px solid var(--l4); border-radius: var(--radius-md); }
+.lp-flow__step b { font-family: var(--font-display); font-size: 0.98rem; color: var(--text-primary); }
+.lp-flow__step span { font-size: 0.76rem; color: var(--text-tertiary); line-height: 1.4; }
+.lp-flow__arrow { align-self: center; color: var(--text-muted); font-weight: 700; }
+@media (max-width: 760px) { .lp-flow__arrow { display: none; } .lp-flow__step { flex-basis: 100%; } }
+
+.lp-sec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+@media (max-width: 1080px) { .lp-sec-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .lp-sec-grid { grid-template-columns: 1fr; } }
+.lp-sec-card { display: flex; flex-direction: column; gap: 0.6rem; padding: 1.1rem; background: var(--surface-1); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); }
+.lp-sec-card--siem { border-color: color-mix(in srgb, var(--l4) 40%, var(--border-subtle)); background: color-mix(in srgb, var(--l4) 5%, var(--surface-1)); }
+.lp-sec-tag { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.02em; color: var(--l4); }
+.lp-sec-tag em { font-style: normal; color: var(--text-tertiary); font-weight: 600; }
+.lp-sec-card p { margin: 0; font-size: 0.84rem; line-height: 1.5; color: var(--text-secondary); flex: 1; }
+.lp-sec-card p b { color: var(--text-primary); }
+.lp-sec-links { display: flex; flex-wrap: wrap; gap: 1rem; }

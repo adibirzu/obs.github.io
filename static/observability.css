@@ -10230,3 +10230,9 @@ a.service-card {
 .lp-sec-card p { margin: 0; font-size: 0.84rem; line-height: 1.5; color: var(--text-secondary); flex: 1; }
 .lp-sec-card p b { color: var(--text-primary); }
 .lp-sec-links { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+/* Dark theme: brighten level accents so small --lv text stays legible on dark surfaces */
+[data-theme="dark"] {
+  --l0: #6FB3A8; --l1: #4FA3C7; --l2: #D9A86A;
+  --l3: #E66B53; --l4: #C68A98; --l5: #5AA0CE;
+}

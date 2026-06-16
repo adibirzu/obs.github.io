@@ -54,6 +54,7 @@ window.OBS_RESOURCES = [
       { title: "OCILoggingAnalytics", url: "https://github.com/adibirzu/OCILoggingAnalytics", summary: "Reusable OCI Logging Analytics assets — sources, parsers, dashboards." },
       { title: "LoggingAnalyticsFiles", url: "https://github.com/adibirzu/LoggingAnalyticsFiles", summary: "Sources and parsers created for security use cases in OCI Logging Analytics." },
       { title: "mcp-oci-logan-server", url: "https://github.com/adibirzu/mcp-oci-logan-server", summary: "MCP server exposing OCI Logging Analytics to AI agents." },
+      { title: "octo-observability-demo", url: "https://github.com/adibirzu/octo-observability-demo", summary: "End-to-end reference platform with source-controlled Log Analytics parsers, saved searches, and dashboards." },
     ],
   },
   {

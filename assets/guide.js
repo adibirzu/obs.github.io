@@ -280,13 +280,14 @@ OTEL_PROPAGATORS=tracecontext,baggage` },
     /* --- Additional L2 coverage --- */
     stack: { level: "L2", icon: "layers", name: "OCI Stack Monitoring",
       tagline: "Full-stack monitoring for application stacks and their hosts.",
-      lz: "Add for existing or transitional estates. Documented as deprecated to 23 January 2027 — not a default for net-new designs.",
-      exec: ["Health and performance of app servers, databases, and the infrastructure beneath them.", "Use for existing-estate or migration cases, with a documented transition plan."],
-      arch: ["Discovers stack resources and their relationships.", "Treat as transitional — prefer Monitoring, APM, and Database Management for net-new.", "Document the deprecation transition plan before the date."],
+      lz: "Add as a Landing Zone add-on for application-stack monitoring. Its capabilities are being merged into the OCI Monitoring service, so investment carries forward.",
+      exec: ["Health and performance of app servers, databases, and the infrastructure beneath them, with discovery and topology.", "Capabilities are converging into OCI Monitoring — no separate replacement is needed."],
+      arch: ["Discovers stack resources and their relationships.", "Stack Monitoring's capabilities are being merged into the OCI Monitoring service.", "Onboard application stacks through the Management Agent."],
       prac: ["Enable monitoring on a discovered resource through the Management Agent."],
-      code: { lang: "Note", body: `# Stack Monitoring — available until 2026-... (deprecated 2027-01-23)
-# Net-new designs: prefer Monitoring + APM + Database Management
-# Existing estates: document a transition plan before the date` },
+      code: { lang: "Note", body: `# OCI Stack Monitoring
+# - capabilities are merging into the OCI Monitoring service
+# - discover application stacks + topology via the Management Agent
+# - existing investment carries forward into OCI Monitoring` },
       docs: "https://docs.oracle.com/en-us/iaas/stack-monitoring/home.htm" },
     java: { level: "L2", icon: "coffee", name: "Java Management Service",
       tagline: "Discover, monitor, and patch the Java estate across hosts.",
@@ -461,8 +462,8 @@ graph.add_node("explain",   call_generative_ai_summary)
       path: ["apm","metric","log","analyze","db","insight","event","bell","hub"] },
     apps: { name: "Oracle applications and middleware", icon: "layers",
       detail: "E-Business Suite, JD Edwards, PeopleSoft, WebLogic, SOA, and Fusion Middleware run on substantial infrastructure with heavy database dependencies. Instrument what you can with APM, and lean on logs and database depth for the rest.",
-      start: "L1 and L2 first; add APM where instrumentation is feasible. Treat Stack Monitoring as transitional only.",
-      outcomes: ["Drill-downs from application performance into the supporting database", "Log Analytics parsers and dashboards tuned to the application stack", "A documented transition off Stack Monitoring before its deprecation"],
+      start: "L1 and L2 first; add APM where instrumentation is feasible. Stack Monitoring covers the application stack, with its capabilities merging into OCI Monitoring.",
+      outcomes: ["Drill-downs from application performance into the supporting database", "Log Analytics parsers and dashboards tuned to the application stack", "Application-stack monitoring that carries forward into OCI Monitoring"],
       path: ["metric","log","analyze","apm","db","insight","agent"] },
     hybrid: { name: "Hybrid enterprise estate", icon: "cloud",
       detail: "OCI runs alongside on-premises databases and applications, third-party tools, and an existing ITSM platform. The Management Agent and Gateway are the bridge that brings external telemetry into OCI securely.",

@@ -7057,6 +7057,23 @@ a.service-card {
 }
 .workflow-steps .workflow-step > span:last-child { flex: 1; }
 
+/* Stack Monitoring is merging into OCI Monitoring — present as informational
+   (deep blue), not a red end-of-life warning. */
+.merge-badge,
+.deprecated-badge.merge-badge,
+.mini-eol-badge.merge-badge,
+.eol-badge.merge-badge {
+    background: rgba(4, 83, 111, 0.14) !important;
+    color: #04536F !important;
+    border-color: rgba(4, 83, 111, 0.35) !important;
+}
+.eol-banner.merge-banner {
+    background: rgba(4, 83, 111, 0.10) !important;
+    color: #04536F !important;
+    border-color: rgba(4, 83, 111, 0.30) !important;
+}
+.eol-banner.merge-banner .eol-link { color: #04536F !important; }
+
 .step-number {
     width: 22px;
     height: 22px;

@@ -1,6 +1,6 @@
 # OCI Observability Atlas
 
-**A guided path from L0 to L4 for designing enterprise observability on Oracle Cloud Infrastructure — find the right O&M and AI services for your use case and enable them when you need them.**
+**A persona- and industry-driven path from L0 to L5 for designing enterprise observability on Oracle Cloud Infrastructure — find the right O&M and AI services for who you are and what you run, and enable them when you need them.**
 
 🔗 **Live:** [obs.octodemo.cloud](https://obs.octodemo.cloud) · mirror: [adibirzu.github.io/obs](https://adibirzu.github.io/obs/)
 
@@ -13,17 +13,37 @@ Built with the Oracle Redwood design language (Georgia + Figtree, warm-stone pal
 
 ## What this is
 
-A single-page guide that helps **any user** — executive, architect, or practitioner — find the right OCI Observability & Management (O&M) services for their use case and adopt them in the right order:
+A single-page guide that helps **any user** find the right OCI Observability & Management (O&M) services for their role, industry, and use case, and adopt them in the right order:
 
+- **Start by persona + industry** — pick who you are and where you work; the page tailors the levels, services, and default lens. Access is governed by OCI IAM (personas → OCI Groups + scoped policies).
 - **Use-case finder** — pick your estate pattern (traditional app, database-centric, OKE, Oracle apps, hybrid, agentic) and get a recommended path with concrete outcomes.
-- **The L0 → L4 ladder** — 31 O&M and AI services, each opening an inspector with Executive / Architect / Practitioner lenses, copy-ready MQL/OCL/OTel snippets, and a "Learn more" panel of curated guides + open-source projects.
+- **The L0 → L5 ladder** — 31 O&M and AI services, each opening an inspector with Executive / Architect / Practitioner lenses, a "Relevant to" persona row, copy-ready MQL/OCL/OTel snippets, and curated guides + open-source projects.
 - **Collection-agent comparison** — Oracle Cloud Agent vs. Management Agent vs. Unified Monitoring Agent.
 - **AI agent observability (L4)** — the SAIF / Zero Trust / Observability triad and a modern Instrument → Collect → Analyse → Evaluate → Act reference diagram.
-- **Database observability** — deployable as part of the official OCI Operating Entities (OE) Landing Zone (see below).
+- **Multitenancy at scale (L5)** — centralized Log Analytics aggregation across tenants and clouds, with per-tenant isolation by compartment + IAM (see below).
 - **Resources** — curated DevRel guides, demos, and the maintainer's public observability projects, mapped per service.
 - **[Interactive launchpad](https://obs.octodemo.cloud/launchpad.html)** — the companion operations console.
 
-## The L0 → L4 model
+## Start with you — personas and industries
+
+The site opens with a **persona + industry** selector, not a product list. Pick who you are and where you work, and it points you at the right levels, services, and default lens.
+
+| Persona | Default lens | Levels |
+|---|---|---|
+| Executive / service owner | Executive | L0, L1, L4 |
+| Platform engineer / cloud architect | Architect | L0–L3, L5 |
+| SRE / operations (NOC) | Practitioner | L1–L3 |
+| DBA / database team | Practitioner | L2 |
+| Security / SOC / governance | Architect | L0, L2, L4 |
+| Developer / application team | Practitioner | L1, L3 |
+| AI / ML engineer | Architect | L4 |
+| Operator / ISV (multitenancy) | Architect | L0, L5 |
+
+Industries (financial services, telco, healthcare, public sector, retail, ISV/SaaS) tilt the emphasis — e.g. financial services leans on L2 database depth and L0 audit; ISV/SaaS leans on L5 multitenancy.
+
+**Access is governed by OCI IAM.** Each persona maps to an **OCI Group** with **policies scoped to compartments** — an *admin* group manages the services, a *reader* group has read-only access — in the Landing Zone Common Identity Domain.
+
+## The L0 → L5 model
 
 | Level | Theme | Question it answers | Example services |
 |---|---|---|---|
@@ -32,10 +52,34 @@ A single-page guide that helps **any user** — executive, architect, or practit
 | **L2** | Diagnose deep | Why did it happen, and are we out of room? | Database Management, Ops Insights, Log Analytics, Management Agent, Stack Monitoring, Java Management |
 | **L3** | Correlate & automate | What's the business impact, and what can self-heal? | APM + OpenTelemetry, Connector Hub, Resource Scheduler, OS Management Hub, Fleet App Mgmt |
 | **L4** | Observe & govern AI | Is the agent correct, grounded, safe, improving? | APM GenAI, Generative AI (judge) + guardrails, Logging Analytics anomaly, Data Science eval, Cloud Guard Instance Security, Gen AI Agents |
+| **L5** | Operate multitenancy | How do operators run it across tenants and clouds? | Centralized Log Analytics aggregation, multicloud ingestion, per-tenant isolation by compartment + IAM |
 
-## Database observability and the official Landing Zone
+> Stack Monitoring's capabilities are converging into OCI Monitoring — there is no need to replace it with separate services.
 
-For the database layer, observability can be deployed as part of the official Oracle [OCI Operating Entities (OE) Landing Zone](https://github.com/oci-landing-zones/oci-landing-zone-operating-entities) (the `oci-landing-zones` org). Enable Database Management and the related signals where your databases live.
+## L5 — Multitenancy and observability at scale
+
+The multitenant approach is **not just access scoping**. The real model is **centralized aggregation**:
+
+1. **Sources** — per-tenant OCI tenancies (OKE, databases, OCI services, audit logs) **and** other clouds / on-premises: AWS (incl. EKS), Microsoft Azure (incl. Oracle Database@Azure, AKS), Google Cloud (GKE), on-prem K8s/VMs/databases, and Fusion SaaS / OIC.
+2. **Collect** — Service Connector Hub (OCI-native), Management Agent, **FluentD / Fluent-Bit via Helm** for Kubernetes anywhere (the [`oracle-quickstart/oci-kubernetes-monitoring`](https://github.com/oracle-quickstart/oci-kubernetes-monitoring) solution; AWS EKS uses the Helm path), OCI Functions, Object Storage, and the REST API / direct upload.
+3. **Aggregate & analyse** — a central **OCI Log Analytics**: 300+ out-of-the-box sources, clustering, link analysis, detection rules, tiered storage, and LoganAI (AI explanations, agentic MCP, RAG dashboards).
+4. **Operate** — an operator cross-tenant fleet view (SLOs, capacity, chargeback) plus per-tenant views.
+
+**Isolation** stays per-tenant, by compartment and IAM — Tenancy / Platform / Environment(Project) observability teams, each an admin and a reader OCI group — grounded in the official [OCI Database Observability LZ add-on (`obs_v2`)](https://github.com/oci-landing-zones/oci-landing-zone-operating-entities/tree/obs_v2/addons/oci-db-observability). Adding a tenant, environment, or project is repetition: clone the compartment, group, and policy.
+
+**Five best practices at scale:** (1) establish a common correlation key (transaction ID, ECID), (2) centralize all log sources, (3) build correlated dashboards, (4) automate alerts and anomaly detection, (5) embed observability into the design.
+
+References (public): [OCI Log Analytics](https://www.oracle.com/manageability/log-analytics/) · [docs](https://docs.oracle.com/en-us/iaas/log-analytics/home.htm) · [Kubernetes monitoring solution](https://docs.oracle.com/en-us/iaas/log-analytics/doc/kubernetes-solution.html) · [LiveLabs](https://livelabs.oracle.com/) · [A-Team blogs](https://www.ateam-oracle.com/).
+
+> Diagrams for both the multicloud aggregation model and the IAM scoping model are in [`assets/diagrams/`](assets/diagrams/) (`observability-multitenant.svg`, `observability-scope.svg`).
+
+## Propose a new monitoring scenario
+
+This guide is meant to grow. To add a use case (e.g. "observability for an EBS estate" or "tracing a CrewAI multi-agent app"):
+
+1. Read **[docs/PROPOSE-A-SCENARIO.md](docs/PROPOSE-A-SCENARIO.md)** — the scenario template and what a good one contains.
+2. Open a **[Monitoring scenario issue](../../issues/new?template=monitoring-scenario.yml)** (or copy the template into a PR).
+3. Or extend the data directly: add an entry to [`assets/resources.js`](assets/resources.js) (links/projects per service) or propose a new finder pattern in [`assets/guide.js`](assets/guide.js).
 
 ## Propose a new monitoring scenario
 

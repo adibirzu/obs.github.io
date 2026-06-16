@@ -1,42 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 600" font-family="Figtree, Arial, sans-serif" role="img" aria-label="Multitenant observability at scale: per-tenant multicloud sources are collected by Management Agent, Service Connector Hub, Streaming and Object Storage, Functions, FluentD/Fluent-Bit and direct upload, aggregated into a central OCI Log Analytics, analysed with clustering, link analysis, detection rules and LoganAI, and surfaced to operator dashboards — with per-tenant isolation by compartment and IAM.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 660" font-family="Figtree, Arial, sans-serif" role="img" aria-label="Multitenant, multicloud observability at scale. OCI tenancies (Tenant A, B, N — OKE, databases, OCI services, audit logs) and other clouds and on-premises (AWS with EKS, Microsoft Azure with AKS and Oracle Database@Azure, Google Cloud with GKE, on-premises Kubernetes, VMs and databases, and Fusion SaaS and OIC) are collected via Service Connector Hub, Management Agent, FluentD and Fluent-Bit deployed by Helm, OCI Functions, Object Storage, and the REST API or direct upload, aggregated into a central OCI Log Analytics with 300-plus sources, clustering, link analysis, detection rules, tiered storage and LoganAI, then surfaced to an operator cross-tenant fleet view, dashboards, alarms and per-tenant views, with per-tenant isolation by compartment and IAM.">
   <defs>
     <marker id="m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>
     <style>.t{font-family:Georgia,serif}.mut{fill:#5A6160}.mono{font-family:'JetBrains Mono',monospace;font-size:10px}</style>
   </defs>
-  <rect width="1180" height="600" fill="#FBF9F8"/>
-  <text class="t" x="40" y="38" font-size="22" fill="#1C1A19">Multitenancy at scale — collect from everywhere, aggregate in OCI Log Analytics.</text>
-  <text x="40" y="60" font-size="12.5" class="mut">Per-tenant isolation by compartment and IAM; one operator view across the fleet, correlated by a common key.</text>
+  <rect width="1180" height="660" fill="#FBF9F8"/>
+  <text class="t" x="40" y="36" font-size="22" fill="#1C1A19">Multicloud, multitenant — collect from everywhere, aggregate in OCI Log Analytics.</text>
+  <text x="40" y="58" font-size="12.5" class="mut">Per-tenant isolation by compartment and IAM; one operator view across the fleet, correlated by a common key.</text>
 
-  <!-- col headers -->
-  <text class="mono" x="60" y="98" fill="#315357" font-weight="700">1 · TENANTS &amp; SOURCES (MULTICLOUD)</text>
-  <text class="mono" x="430" y="98" fill="#04536F" font-weight="700">2 · COLLECT</text>
-  <text class="mono" x="700" y="98" fill="#C58C52" font-weight="700">3 · AGGREGATE &amp; ANALYSE</text>
-  <text class="mono" x="1000" y="98" fill="#C74634" font-weight="700">4 · OPERATE</text>
+  <text class="mono" x="40" y="92" fill="#315357" font-weight="700">1 · SOURCES</text>
+  <text class="mono" x="420" y="92" fill="#04536F" font-weight="700">2 · COLLECT</text>
+  <text class="mono" x="690" y="92" fill="#C58C52" font-weight="700">3 · AGGREGATE &amp; ANALYSE</text>
+  <text class="mono" x="1030" y="92" fill="#C74634" font-weight="700">4 · OPERATE</text>
 
-  <!-- tenants -->
-  <g>
-    <g transform="translate(40,112)"><rect width="330" height="118" rx="10" fill="#E3ECEB" stroke="#315357"/>
-      <text class="mono" x="14" y="24" fill="#315357" font-weight="700">Tenant A</text>
-      <text x="14" y="46" font-size="11.5" class="mut">OCI · Oracle DB@Azure · AWS · GCP</text>
-      <text x="14" y="64" font-size="11.5" class="mut">On-prem · Fusion SaaS · OIC · OKE</text>
-      <text x="14" y="90" font-size="11" fill="#3F6B4A">apps · databases · containers · OS · audit logs</text>
+  <!-- OCI tenancies zone -->
+  <g transform="translate(40,104)">
+    <rect width="350" height="150" rx="10" fill="#E3ECEB" stroke="#315357"/>
+    <text class="mono" x="14" y="22" fill="#315357" font-weight="700">OCI tenancies (native)</text>
+    <g font-size="10.5" fill="#2A2F2F">
+      <g transform="translate(14,32)"><rect width="100" height="34" rx="6" fill="#fff" stroke="#9DBBA8"/><text x="12" y="21" class="mono" font-weight="700">Tenant A</text></g>
+      <g transform="translate(122,32)"><rect width="100" height="34" rx="6" fill="#fff" stroke="#9DBBA8"/><text x="12" y="21" class="mono" font-weight="700">Tenant B</text></g>
+      <g transform="translate(230,32)"><rect width="106" height="34" rx="6" fill="#fff" stroke="#9DBBA8"/><text x="12" y="21" class="mono" font-weight="700">Tenant N</text></g>
     </g>
-    <g transform="translate(40,238)"><rect width="330" height="56" rx="10" fill="#fff" stroke="#9DBBA8"/><text class="mono" x="14" y="24" fill="#315357" font-weight="700">Tenant B</text><text x="14" y="42" font-size="11" class="mut">same governed pattern, isolated compartment</text></g>
-    <g transform="translate(40,302)"><rect width="330" height="56" rx="10" fill="#fff" stroke="#9DBBA8"/><text class="mono" x="14" y="24" fill="#315357" font-weight="700">Tenant N</text><text x="14" y="42" font-size="11" class="mut">replicate by repetition — compartment + group + policy</text></g>
+    <text x="14" y="92" font-size="11.5" class="mut">OKE · databases · OCI services · audit logs</text>
+    <text x="14" y="112" font-size="11" fill="#3F6B4A">Isolated per tenant — clone compartment + group + policy</text>
+    <text x="14" y="132" font-size="11" fill="#3F6B4A">Collected natively (Service Connector Hub · Management Agent)</text>
   </g>
 
-  <!-- collectors -->
+  <!-- other clouds + on-prem -->
+  <g transform="translate(40,266)">
+    <rect width="350" height="262" rx="10" fill="#F3F4F3" stroke="#C58C52"/>
+    <text class="mono" x="14" y="22" fill="#A8702F" font-weight="700">OTHER CLOUDS &amp; ON-PREMISES</text>
+    <g font-size="11" fill="#2A2F2F">
+      <g transform="translate(14,32)"><rect width="322" height="40" rx="6" fill="#fff" stroke="#E4D9C0"/><text x="12" y="18" font-weight="700">AWS</text><text x="12" y="33" class="mut" font-size="10.5">EKS (Kubernetes) · EC2 · S3 · CloudWatch</text></g>
+      <g transform="translate(14,78)"><rect width="322" height="40" rx="6" fill="#fff" stroke="#E4D9C0"/><text x="12" y="18" font-weight="700">Microsoft Azure</text><text x="12" y="33" class="mut" font-size="10.5">AKS · Oracle Database@Azure · VMs</text></g>
+      <g transform="translate(14,124)"><rect width="322" height="40" rx="6" fill="#fff" stroke="#E4D9C0"/><text x="12" y="18" font-weight="700">Google Cloud</text><text x="12" y="33" class="mut" font-size="10.5">GKE · Compute Engine</text></g>
+      <g transform="translate(14,170)"><rect width="322" height="40" rx="6" fill="#fff" stroke="#E4D9C0"/><text x="12" y="18" font-weight="700">On-premises</text><text x="12" y="33" class="mut" font-size="10.5">Kubernetes · VMs · databases · network devices</text></g>
+      <g transform="translate(14,216)"><rect width="322" height="34" rx="6" fill="#fff" stroke="#E4D9C0"/><text x="12" y="22" font-weight="700">SaaS — Fusion Applications · OIC</text></g>
+    </g>
+  </g>
+
+  <!-- collect methods -->
   <g font-size="11.5" fill="#1C1A19">
-    <g transform="translate(420,112)"><rect width="220" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="25">Management Agent</text></g>
-    <g transform="translate(420,158)"><rect width="220" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="25">Service Connector Hub</text></g>
-    <g transform="translate(420,204)"><rect width="220" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="25">Streaming &amp; Object Storage</text></g>
-    <g transform="translate(420,250)"><rect width="220" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="25">OCI Functions</text></g>
-    <g transform="translate(420,296)"><rect width="220" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="25">FluentD · Fluent-Bit · OTel</text></g>
-    <g transform="translate(420,342)"><rect width="220" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="25">Direct upload (API / UI)</text></g>
+    <g transform="translate(418,104)"><rect width="232" height="44" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="20">Service Connector Hub</text><text x="14" y="36" class="mut" font-size="10">OCI-native logs &amp; events</text></g>
+    <g transform="translate(418,156)"><rect width="232" height="44" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="20">Management Agent</text><text x="14" y="36" class="mut" font-size="10">hosts · databases · on-prem · other clouds</text></g>
+    <g transform="translate(418,208)"><rect width="232" height="52" rx="8" fill="#DCE7EC" stroke="#04536F" stroke-width="1.6"/><text x="14" y="20" font-weight="600">FluentD · Fluent-Bit — via Helm</text><text x="14" y="36" class="mut" font-size="10">Kubernetes anywhere: EKS · AKS · GKE · on-prem</text><text x="14" y="48" class="mut" font-size="9.5">oracle-quickstart/oci-kubernetes-monitoring</text></g>
+    <g transform="translate(418,268)"><rect width="232" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="24">OCI Functions</text></g>
+    <g transform="translate(418,316)"><rect width="232" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="24">Object Storage (batch / files)</text></g>
+    <g transform="translate(418,364)"><rect width="232" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="24">REST API / direct upload</text></g>
   </g>
 
   <!-- central Log Analytics -->
-  <g transform="translate(690,112)">
+  <g transform="translate(690,104)">
     <rect width="320" height="318" rx="12" fill="#FBF1D8" stroke="#C58C52" stroke-width="1.5"/>
     <text class="t" x="18" y="30" font-size="16" fill="#A8702F">Central OCI Log Analytics</text>
     <g font-size="11.5" fill="#2A2F2F">
@@ -49,21 +63,21 @@
   </g>
 
   <!-- operate -->
-  <g transform="translate(1010,112)">
-    <g transform="translate(0,0)"><rect width="150" height="58" rx="9" fill="#fff" stroke="#A9C0CC"/><text class="t" x="14" y="26" font-size="13" fill="#04536F">Operator</text><text x="14" y="44" font-size="10.5" class="mut">cross-tenant fleet view</text></g>
-    <g transform="translate(0,72)"><rect width="150" height="50" rx="9" fill="#fff" stroke="#A9C0CC"/><text x="14" y="22" font-size="11.5">Dashboards</text><text x="14" y="38" font-size="10" class="mut">SLOs · capacity · chargeback</text></g>
-    <g transform="translate(0,134)"><rect width="150" height="44" rx="9" fill="#fff" stroke="#A9C0CC"/><text x="14" y="20" font-size="11.5">Alarms · Notifications</text></g>
-    <g transform="translate(0,190)"><rect width="150" height="44" rx="9" fill="#fff" stroke="#A9C0CC"/><text x="14" y="20" font-size="11.5">Per-tenant tenant view</text></g>
+  <g transform="translate(1030,104)">
+    <g transform="translate(0,0)"><rect width="130" height="58" rx="9" fill="#fff" stroke="#A9C0CC"/><text class="t" x="12" y="26" font-size="13" fill="#04536F">Operator</text><text x="12" y="44" font-size="10" class="mut">cross-tenant fleet</text></g>
+    <g transform="translate(0,72)"><rect width="130" height="52" rx="9" fill="#fff" stroke="#A9C0CC"/><text x="12" y="22" font-size="11.5">Dashboards</text><text x="12" y="38" font-size="9.5" class="mut">SLOs · capacity · chargeback</text></g>
+    <g transform="translate(0,136)"><rect width="130" height="44" rx="9" fill="#fff" stroke="#A9C0CC"/><text x="12" y="20" font-size="11.5">Alarms · Notify</text></g>
+    <g transform="translate(0,192)"><rect width="130" height="44" rx="9" fill="#fff" stroke="#A9C0CC"/><text x="12" y="20" font-size="11.5">Per-tenant view</text></g>
   </g>
 
   <!-- arrows -->
   <g fill="none" stroke-width="1.6">
-    <path d="M370 175 L418 175" stroke="#5A6160" marker-end="url(#m)" color="#5A6160"/>
-    <path d="M370 266 L418 266" stroke="#5A6160" marker-end="url(#m)" color="#5A6160" opacity=".6"/>
-    <path d="M370 330 L418 318" stroke="#5A6160" marker-end="url(#m)" color="#5A6160" opacity=".6"/>
-    <path d="M640 250 L688 250" stroke="#C58C52" marker-end="url(#m)" color="#C58C52"/>
-    <path d="M1010 250 L992 200" stroke="#C74634" marker-end="url(#m)" color="#C74634"/>
+    <path d="M390 178 L416 178" stroke="#315357" marker-end="url(#m)" color="#315357"/>
+    <path d="M390 390 L416 300" stroke="#C58C52" marker-end="url(#m)" color="#C58C52" opacity=".85"/>
+    <path d="M650 232 L688 232" stroke="#C58C52" marker-end="url(#m)" color="#C58C52"/>
+    <path d="M1010 200 L1028 160" stroke="#C74634" marker-end="url(#m)" color="#C74634"/>
   </g>
 
-  <text x="40" y="470" font-size="12.5" class="mut">Isolation by compartment + IAM (see the scoping model below) · correlate everything by a common key — ECID, transaction ID, or business ID.</text>
+  <text x="40" y="560" font-size="12.5" class="mut">Kubernetes anywhere — OKE, AWS EKS, AKS, GKE, on-prem: a Helm chart deploys FluentD (logs) and the Management Agent (metrics) to OCI Log Analytics.</text>
+  <text x="40" y="580" font-size="12.5" class="mut">Isolation by compartment + IAM (see the scoping model below) · correlate everything by a common key — ECID, transaction ID, or business ID.</text>
 </svg>

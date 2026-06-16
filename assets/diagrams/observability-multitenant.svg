@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 660" font-family="Figtree, Arial, sans-serif" role="img" aria-label="Multitenant, multicloud observability at scale. OCI tenancies (Tenant A, B, N — OKE, databases, OCI services, audit logs) and other clouds and on-premises (AWS with EKS, Microsoft Azure with AKS and Oracle Database@Azure, Google Cloud with GKE, on-premises Kubernetes, VMs and databases, and Fusion SaaS and OIC) are collected via Service Connector Hub, Management Agent, FluentD and Fluent-Bit deployed by Helm, OCI Functions, Object Storage, and the REST API or direct upload, aggregated into a central OCI Log Analytics with 300-plus sources, clustering, link analysis, detection rules, tiered storage and LoganAI, then surfaced to an operator cross-tenant fleet view, dashboards, alarms and per-tenant views, with per-tenant isolation by compartment and IAM.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 660" font-family="Figtree, Arial, sans-serif" role="img" aria-label="Multitenant, multicloud observability at scale. OCI tenancies (Tenant A, B, N — OKE, databases, OCI services, audit logs) and other clouds and on-premises (AWS with EKS, Microsoft Azure with AKS and Oracle Database@Azure, Google Cloud with GKE, on-premises Kubernetes, VMs and databases, and Fusion SaaS and OIC) are collected via Service Connector Hub, Management Agent, FluentD and Fluent-Bit deployed by Helm, OCI Functions, Object Storage, and the REST API or direct upload, aggregated into a central OCI Log Analytics with 250-plus out-of-the-box sources, clustering, link analysis, detection rules, tiered storage and GenAI-assisted analytics, then surfaced to an operator cross-tenant fleet view, dashboards, alarms and per-tenant views. Cross-tenancy aggregation is not automatic: it relies on per-source forwarding and IAM Define, Endorse and Admit policies, and Log Analytics is regional, with per-tenant isolation by log group and compartment.">
   <defs>
     <marker id="m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>
     <style>.t{font-family:Georgia,serif}.mut{fill:#5A6160}.mono{font-family:'JetBrains Mono',monospace;font-size:10px}</style>
@@ -43,8 +43,8 @@
   <g font-size="11.5" fill="#1C1A19">
     <g transform="translate(418,104)"><rect width="232" height="44" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="20">Service Connector Hub</text><text x="14" y="36" class="mut" font-size="10">OCI-native logs &amp; events</text></g>
     <g transform="translate(418,156)"><rect width="232" height="44" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="20">Management Agent</text><text x="14" y="36" class="mut" font-size="10">hosts · databases · on-prem · other clouds</text></g>
-    <g transform="translate(418,208)"><rect width="232" height="52" rx="8" fill="#DCE7EC" stroke="#04536F" stroke-width="1.6"/><text x="14" y="20" font-weight="600">FluentD · Fluent-Bit — via Helm</text><text x="14" y="36" class="mut" font-size="10">Kubernetes anywhere: EKS · AKS · GKE · on-prem</text><text x="14" y="48" class="mut" font-size="9.5">oracle-quickstart/oci-kubernetes-monitoring</text></g>
-    <g transform="translate(418,268)"><rect width="232" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="24">OCI Functions</text></g>
+    <g transform="translate(418,208)"><rect width="232" height="52" rx="8" fill="#DCE7EC" stroke="#04536F" stroke-width="1.6"/><text x="14" y="20" font-weight="600">FluentD · Fluent-Bit — via Helm</text><text x="14" y="36" class="mut" font-size="10">OKE · AWS EKS (documented) · generic Kubernetes</text><text x="14" y="48" class="mut" font-size="9.5">oracle-quickstart/oci-kubernetes-monitoring</text></g>
+    <g transform="translate(418,268)"><rect width="232" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="24">OCI Functions (process → API)</text></g>
     <g transform="translate(418,316)"><rect width="232" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="24">Object Storage (batch / files)</text></g>
     <g transform="translate(418,364)"><rect width="232" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="24">REST API / direct upload</text></g>
   </g>
@@ -54,11 +54,11 @@
     <rect width="320" height="318" rx="12" fill="#FBF1D8" stroke="#C58C52" stroke-width="1.5"/>
     <text class="t" x="18" y="30" font-size="16" fill="#A8702F">Central OCI Log Analytics</text>
     <g font-size="11.5" fill="#2A2F2F">
-      <g transform="translate(18,46)"><rect width="284" height="40" rx="7" fill="#fff" stroke="#E4D9C0"/><text x="12" y="25">Ingest &amp; enrich · 300+ out-of-box sources</text></g>
+      <g transform="translate(18,46)"><rect width="284" height="40" rx="7" fill="#fff" stroke="#E4D9C0"/><text x="12" y="25">Ingest &amp; enrich · 250+ out-of-box sources</text></g>
       <g transform="translate(18,92)"><rect width="284" height="40" rx="7" fill="#fff" stroke="#E4D9C0"/><text x="12" y="25">Clustering · outliers · link analysis</text></g>
-      <g transform="translate(18,138)"><rect width="284" height="40" rx="7" fill="#fff" stroke="#E4D9C0"/><text x="12" y="25">Detection rules · derived store</text></g>
+      <g transform="translate(18,138)"><rect width="284" height="40" rx="7" fill="#fff" stroke="#E4D9C0"/><text x="12" y="25">Detection rules · scheduled detections</text></g>
       <g transform="translate(18,184)"><rect width="284" height="40" rx="7" fill="#fff" stroke="#E4D9C0"/><text x="12" y="25">Tiered storage (active + archive)</text></g>
-      <g transform="translate(18,230)"><rect width="284" height="44" rx="7" fill="#F6E1DC" stroke="#E4B5AC"/><text x="12" y="20" fill="#C74634" font-weight="700">LoganAI / GenAI</text><text x="12" y="37" font-size="10.5" class="mut">AI explanations · agentic (MCP) · RAG dashboards</text></g>
+      <g transform="translate(18,230)"><rect width="284" height="44" rx="7" fill="#F6E1DC" stroke="#E4B5AC"/><text x="12" y="20" fill="#C74634" font-weight="700">GenAI-assisted analytics</text><text x="12" y="37" font-size="10.5" class="mut">AI log explanations · clustering · anomaly insight</text></g>
     </g>
   </g>
 
@@ -78,6 +78,6 @@
     <path d="M1010 200 L1028 160" stroke="#C74634" marker-end="url(#m)" color="#C74634"/>
   </g>
 
-  <text x="40" y="560" font-size="12.5" class="mut">Kubernetes anywhere — OKE, AWS EKS, AKS, GKE, on-prem: a Helm chart deploys FluentD (logs) and the Management Agent (metrics) to OCI Log Analytics.</text>
-  <text x="40" y="580" font-size="12.5" class="mut">Isolation by compartment + IAM (see the scoping model below) · correlate everything by a common key — ECID, transaction ID, or business ID.</text>
+  <text x="40" y="560" font-size="12.5" class="mut">Kubernetes — OKE and AWS EKS are documented; other Kubernetes via the generic Helm chart that deploys FluentD (logs) + Management Agent (metrics).</text>
+  <text x="40" y="580" font-size="12.5" class="mut">Cross-tenancy aggregation is not automatic: per-source forwarding + IAM Define/Endorse/Admit policies; Log Analytics is regional. Isolate per tenant by log group + compartment.</text>
 </svg>

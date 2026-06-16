@@ -412,7 +412,7 @@
         <div class="section__head reveal">
           <span class="steptag"><b>L5</b> · custom build, not out of the box</span>
           <h2>Multitenancy and observability at scale</h2>
-          <p>The multitenant approach is not just access scoping. The real model is <b>centralized aggregation</b>: collect telemetry from every tenant and every cloud, aggregate it in <b>OCI Log Analytics</b>, correlate it by a common key, and analyse it with machine learning and GenAI — while keeping each tenant isolated by compartment and IAM. This is a custom build on the native services for operators running <b>OCI Alloy</b>, <b>Dedicated Region (DRCC)</b>, or a multitenant <b>ISV / SaaS</b> platform.</p>
+          <p>The multitenant approach is not just access scoping. The real model is <b>centralized aggregation</b>: forward telemetry from every tenant and every cloud into a central <b>OCI Log Analytics</b>, correlate it by a common key, and analyse it with machine learning and GenAI — while keeping each tenant isolated by compartment and IAM. Cross-tenancy collection is not automatic — it relies on per-source forwarding plus IAM cross-tenancy policies. This is a <b>custom build</b> on the native services for operators running <b>OCI Alloy</b>, <b>Dedicated Region (DRCC)</b>, or a multitenant <b>ISV / SaaS</b> platform.</p>
         </div>
 
         <figure class="lzfig reveal">
@@ -434,7 +434,7 @@
           <span class="l5pill">FluentD · Fluent-Bit · OpenTelemetry</span>
           <span class="l5pill">Direct upload (API / UI)</span>
         </div>
-        <p class="reveal" style="color:var(--text-muted);font-size:var(--text-sm);margin-top:var(--space-3)">OCI Log Analytics ingests from OCI, on-premises, AWS, Azure, Google Cloud, and SaaS — 300+ out-of-the-box sources, tiered active-plus-archive storage, ML clustering and link analysis, detection rules, and LoganAI (AI explanations, agentic MCP, RAG dashboards).</p>
+        <p class="reveal" style="color:var(--text-muted);font-size:var(--text-sm);margin-top:var(--space-3)">OCI Log Analytics ingests from OCI, on-premises, AWS, Azure, Google Cloud, and SaaS — 250+ out-of-the-box sources, tiered active-plus-archive storage, ML clustering and link analysis, detection rules, and GenAI-assisted analytics. Kubernetes: OKE and AWS EKS are documented via the Helm chart; OCI Functions bridges data (it processes and forwards, rather than collecting natively).</p>
 
         <div class="section__head reveal" style="margin:var(--space-8) 0 var(--space-5)">
           <span class="eyebrow">Isolation and RBAC</span>
@@ -456,6 +456,19 @@
           <span class="l5pill">Project</span><span class="arrow">→</span>
           <span class="l5pill l5pill--op">Tenant</span><span class="arrow">→</span>
           <span class="l5pill l5pill--op">Operator fleet</span>
+        </div>
+
+        <div class="section__head reveal" style="margin:var(--space-8) 0 var(--space-5)">
+          <span class="eyebrow">Design considerations at scale</span>
+          <h3 style="font-size:var(--text-xl)">What a real multitenant design must pin down</h3>
+        </div>
+        <div class="pgrid reveal" style="grid-template-columns:repeat(3,1fr)">
+          <article class="tier3card" style="--tc:var(--l5)"><h3>Cross-tenancy aggregation</h3><p>Pick a host tenancy and source tenancies; route via Service Connector Hub, Streaming, or Object Storage; and grant the IAM cross-tenancy <code>Define</code> / <code>Endorse</code> / <code>Admit</code> policies. It is not automatic.</p></article>
+          <article class="tier3card" style="--tc:var(--l5)"><h3>Isolation model</h3><p>A log group and compartment per tenant — access control rides on compartment-scoped log groups, not on a shared <code>tenant_id</code> field alone.</p></article>
+          <article class="tier3card" style="--tc:var(--l5)"><h3>Agent trust</h3><p>Management Agent install keys per target tenancy and namespace, secrets in Vault, key rotation, and Management Gateway or private egress for hybrid sources.</p></article>
+          <article class="tier3card" style="--tc:var(--l5)"><h3>Network &amp; security</h3><p>Private endpoints and Service Gateway where applicable, Zero Trust Packet Routing and segmentation, and an audit trail of operator access.</p></article>
+          <article class="tier3card" style="--tc:var(--l5)"><h3>Region &amp; data residency</h3><p>Log Analytics is regional. Cross-tenancy sharing requires source and target tenancies subscribed to the same regions; honour residency boundaries.</p></article>
+          <article class="tier3card" style="--tc:var(--l5)"><h3>Capacity &amp; cost</h3><p>Plan ingest volume, active and archive retention, recall cost, Connector Hub delivery semantics, duplicate handling, and service limits.</p></article>
         </div>
 
         <div class="section__head reveal" style="margin:var(--space-8) 0 var(--space-5)">

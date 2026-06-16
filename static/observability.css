@@ -1210,7 +1210,6 @@ body.mobile-nav-open .mobile-drawer {
 .pillar-node[data-pillar="logs"] { transform: translate(calc(-50% - 280px), -50%); }
 .pillar-node[data-pillar="opsinsights"] { transform: translate(calc(-50% - 140px), calc(-50% + 242px)); }
 .pillar-node[data-pillar="dbmgmt"] { transform: translate(calc(-50% + 140px), calc(-50% + 242px)); }
-.pillar-node[data-pillar="sevenkingdoms"] { transform: translate(-50%, calc(-50% + 340px)); }
 
 .pillar-node .node-content {
     display: flex;
@@ -1253,7 +1252,6 @@ body.mobile-nav-open .mobile-drawer {
 .pillar-icon.logs { color: #A78BFA; background: rgba(167, 139, 250, 0.15); }
 .pillar-icon.opsinsights { color: #F472B6; background: rgba(244, 114, 182, 0.15); }
 .pillar-icon.dbmgmt { color: var(--oci-red-light); background: rgba(199, 70, 52, 0.15); }
-.pillar-icon.sevenkingdoms { color: #F87171; background: rgba(248, 113, 113, 0.15); }
 
 .pillar-node .node-label {
     font-size: 13px;

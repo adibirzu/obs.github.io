@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="portal.octodemo.cloud is the OCI Observability launchpad for operators, developers, DBAs, and security teams. Learn the stack, choose the right workflow, and jump into metrics, logs, traces, integrations, and labs.">
     <meta name="theme-color" content="#0f1117">
-    <link rel="icon" type="image/png" sizes="256x256" href="assets/octo/favicon.png?v=3">
-    <link rel="icon" type="image/svg+xml" href="assets/octo/octo-mark.svg?v=3">
-    <link rel="apple-touch-icon" href="assets/octo/favicon.png?v=3">
+    <link rel="icon" type="image/png" sizes="256x250" href="assets/octo/octo-logo.png?v=4">
+    <link rel="apple-touch-icon" href="assets/octo/octo-logo.png?v=4">
     <title>portal.octodemo.cloud | OCI Observability Launchpad</title>
 
     <!-- Critical CSS inline for faster first paint -->
@@ -25,7 +24,6 @@
 
     <!-- Main stylesheet -->
     <link rel="stylesheet" href="static/observability.css">
-    <link rel="stylesheet" href="static/seven_kingdoms.css">
 
     <!-- Preload critical OCI icons used above the fold -->
     <link rel="preload" as="image" href="static/oci-icons/Monitoring.png">
@@ -37,7 +35,7 @@
     <nav class="sidebar">
         <div class="sidebar-header">
             <div class="oracle-logo">
-                <img src="assets/octo/octo-mark.svg" alt="OCTO" style="height:36px;width:auto;display:block" />
+                <img src="assets/octo/octo-logo.png?v=4" alt="OCTO" style="height:40px;width:auto;display:block;border-radius:8px" />
             </div>
             <div class="brand-lockup">
                 <span class="brand-text">OCI O&M</span>
@@ -165,17 +163,6 @@
                     </svg>
                 </div>
                 <span>AI / GenAI</span>
-                <div class="nav-indicator"></div>
-            </li>
-            <li class="nav-item" data-module="sevenkingdoms" data-private-only>
-                <div class="nav-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                        <path d="M2 17l10 5 10-5"/>
-                        <path d="M2 12l10 5 10-5"/>
-                    </svg>
-                </div>
-                <span>Vulnerable App</span>
                 <div class="nav-indicator"></div>
             </li>
         </ul>
@@ -382,17 +369,6 @@
                             </svg>
                         </div>
                         <span>AI / GenAI</span>
-                        <div class="nav-indicator"></div>
-                    </button>
-                    <button type="button" class="nav-item" data-module="sevenkingdoms" data-private-only>
-                        <div class="nav-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                <path d="M2 17l10 5 10-5"/>
-                                <path d="M2 12l10 5 10-5"/>
-                            </svg>
-                        </div>
-                        <span>Vulnerable App</span>
                         <div class="nav-indicator"></div>
                     </button>
                 </div>
@@ -701,8 +677,8 @@
                                             </div>
                                             <pre><code id="code-fluentd">&lt;source&gt;
   @type tail
-  path /var/log/app/vulnerable_portal.log
-  pos_file /var/log/td-agent/vulnerable_portal.pos
+  path /var/log/app/app.log
+  pos_file /var/log/td-agent/app.log.pos
   tag oci.loganalytics.portal
   &lt;parse&gt;
     @type json
@@ -970,7 +946,7 @@ HttpRequests[1m]{resourceId = "ocid1.instance.oc1..."}.status_code != "200"
                                                 </div>
                                                 <pre><code id="code-otel">from opentelemetry import trace
 
-tracer = trace.get_tracer("seven-kingdoms-portal")
+tracer = trace.get_tracer("demo-portal")
 
 def get_treasury_records(db_conn, search_term):
     # Start a span to trace this transaction
@@ -1161,7 +1137,6 @@ def call_inventory_service():
                     </div>
                 </div>
             </div>
-                       <button type="button" class="practitioner-lab-btn" data-module="sevenkingdoms" data-private-only>Launch Security Lab →</button>
                             </div>
                         </div>
                     </div>
@@ -1211,7 +1186,6 @@ def call_inventory_service():
                     <div class="knowledge-links">
                         <a href="https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/monitoring-and-observability.htm" target="_blank" class="knowledge-link">OCI adoption guidance</a>
                         <a href="https://livelabs.oracle.com/" target="_blank" class="knowledge-link">Hands-on LiveLabs</a>
-                        <a href="/vulnerable" class="knowledge-link" data-private-only>Security demo lab</a>
                     </div>
                 </article>
                 <button type="button" class="knowledge-card" data-module="fusion">
@@ -1398,22 +1372,6 @@ def call_inventory_service():
                                 </div>
                                 <span class="node-label">Database Mgmt</span>
                                 <span class="node-desc">Fleet Management</span>
-                            </div>
-                        </div>
-
-                        <div class="node pillar-node draggable-node" data-pillar="sevenkingdoms" data-default-pos="bottom" data-private-only>
-                            <div class="drag-handle">⋮⋮</div>
-                            <div class="node-connector"></div>
-                            <div class="node-content">
-                                <div class="pillar-icon sevenkingdoms">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                        <path d="M2 17l10 5 10-5"/>
-                                        <path d="M2 12l10 5 10-5"/>
-                                    </svg>
-                                </div>
-                                <span class="node-label">Vulnerable App</span>
-                                <span class="node-desc">Security Demo</span>
                             </div>
                         </div>
                     </div>
@@ -6545,15 +6503,6 @@ def call_inventory_service():
             </div>
         </section>
 
-        <!-- Module: Seven Kingdoms (Security Demo) -->
-        <section class="module" id="module-sevenkingdoms" data-private-only></section>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                if (document.body.dataset.publicMode !== 'true' && window.SevenKingdoms) {
-                    window.SevenKingdoms.init();
-                }
-            });
-        </script>
     </main>
 
     <dialog class="command-palette" id="commandPalette" aria-label="Search OCI Observability modules and resources">
@@ -6599,7 +6548,6 @@ def call_inventory_service():
         </div>
     </div>
 
-    <script src="static/seven_kingdoms.js"></script>
     <script src="static/observability.js" defer></script>
     <!-- Further reading: curated OCI O&M articles + demos (shared catalog) -->
     <script src="assets/resources.js"></script>

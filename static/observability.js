@@ -6,7 +6,7 @@
 (function() {
     'use strict';
 
-    const MODULE_ORDER = ['home', 'monitoring', 'ebs', 'fusion', 'integrations', 'loganalytics', 'apm', 'opsinsights', 'dbmgmt', 'ai', 'sevenkingdoms'];
+    const MODULE_ORDER = ['home', 'monitoring', 'ebs', 'fusion', 'integrations', 'loganalytics', 'apm', 'opsinsights', 'dbmgmt', 'ai'];
     const MODULE_LABELS = {
         home: 'Launchpad',
         monitoring: 'Monitoring',
@@ -17,8 +17,7 @@
         apm: 'APM',
         opsinsights: 'Ops Insights',
         dbmgmt: 'Database Mgmt',
-        ai: 'AI / GenAI',
-        sevenkingdoms: 'Vulnerable App'
+        ai: 'AI / GenAI'
     };
     const MODULE_SECTION_LABELS = {
         integrations: {
@@ -182,16 +181,6 @@
             description: 'Hands-on labs for OCI observability scenarios and architecture patterns.',
             category: 'Lab',
             keywords: ['labs', 'hands on', 'training']
-        },
-        {
-            id: 'vulnerable',
-            type: 'path',
-            href: '/vulnerable',
-            label: 'Security demo lab',
-            description: 'Open the vulnerable demo and observability training experience.',
-            category: 'Lab',
-            privateOnly: true,
-            keywords: ['security', 'demo', 'training', 'ctf']
         }
     ];
 
@@ -637,21 +626,7 @@
     }
 
     function routeToModule(module, { section = null } = {}) {
-        if (IS_PUBLIC_MODE && module === 'sevenkingdoms') {
-            module = 'home';
-            section = null;
-        }
-
         const shouldCloseMobile = document.body.classList.contains('mobile-nav-open');
-
-        // Special handling for Vulnerable App (External Redirect)
-        if (module === 'sevenkingdoms') {
-            if (shouldCloseMobile) {
-                closeMobileNav();
-            }
-            window.location.href = '/vulnerable';
-            return;
-        }
 
         if (shouldCloseMobile) {
             closeMobileNav();
@@ -681,8 +656,7 @@
             'apm': 'apm',
             'logs': 'loganalytics',
             'opsinsights': 'opsinsights',
-            'dbmgmt': 'dbmgmt',
-            'sevenkingdoms': 'sevenkingdoms'
+            'dbmgmt': 'dbmgmt'
         };
 
         const targetModule = moduleMap[pillar];
@@ -746,14 +720,11 @@
         const rawHash = (hash || '').replace(/^#/, '').trim().toLowerCase();
         const [rawModuleToken, rawSectionToken] = rawHash.split('/');
         const normalizedModule = rawModuleToken.startsWith('module-') ? rawModuleToken.replace(/^module-/, '') : rawModuleToken;
-        const blockedModule = IS_PUBLIC_MODE && normalizedModule === 'sevenkingdoms';
-        const module = blockedModule
-            ? 'home'
-            : MODULE_ORDER.includes(normalizedModule) ? normalizedModule : 'home';
+        const module = MODULE_ORDER.includes(normalizedModule) ? normalizedModule : 'home';
         return {
             module,
             section: normalizeModuleSection(module, rawSectionToken || null),
-            redirected: blockedModule
+            redirected: false
         };
     }
 

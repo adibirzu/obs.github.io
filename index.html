@@ -437,6 +437,62 @@
         </div>
         <p class="reveal" style="color:var(--text-muted);font-size:var(--text-sm);margin-top:var(--space-3)">The documented OCI Logging Analytics ingestion paths are the <b>Management Agent</b>, <b>on-demand / REST upload</b>, <b>Object Storage buckets</b> (continuous collection), and <b>Service Connector Hub</b> — which also pulls <b>custom and cross-tenancy logs from OCI Streaming</b>. It ships 250+ out-of-the-box sources, tiered active-plus-archive storage, ML clustering and link analysis, detection rules, and GenAI-assisted analytics. The same Service Connector → Streaming / REST API paths can also fan out to <b>3rd-party SIEM and observability tools</b> (Splunk, Elastic, Datadog, Microsoft Sentinel) via log shippers or OCI Functions. Kubernetes: OKE and AWS EKS are documented via the Helm chart.</p>
 
+        <div class="section__head reveal" style="margin:var(--space-8) 0 var(--space-4)">
+          <span class="eyebrow">Ingestion recipes</span>
+          <h3 style="font-size:var(--text-xl)">Every arrow is real, open-source code</h3>
+          <p>The diagram is not aspirational — each collection and export path maps to a working repository. Mix and match to ingest from any cloud into OCI Log Analytics, or fan OCI telemetry out to a third-party SIEM.</p>
+        </div>
+        <div class="recipes reveal">
+          <a class="recipe" href="https://github.com/adibirzu/gcplogs2oci" target="_blank" rel="noopener">
+            <span class="recipe__dir recipe__dir--in">GCP → OCI</span>
+            <h4>GCP Cloud Logging → Log Analytics</h4>
+            <p>Stream Google Cloud logs into OCI Log Analytics — serverless, no VMs to run.</p>
+            <span class="recipe__repo">adibirzu/gcplogs2oci ↗</span>
+          </a>
+          <a class="recipe" href="https://github.com/adibirzu/azurelogs2oci" target="_blank" rel="noopener">
+            <span class="recipe__dir recipe__dir--in">Azure → OCI</span>
+            <h4>Azure Monitor logs → Log Analytics</h4>
+            <p>Forward Azure platform and resource logs into OCI Log Analytics.</p>
+            <span class="recipe__repo">adibirzu/azurelogs2oci ↗</span>
+          </a>
+          <a class="recipe" href="https://github.com/oracle-quickstart/oci-kubernetes-monitoring" target="_blank" rel="noopener">
+            <span class="recipe__dir recipe__dir--in">Kubernetes → OCI</span>
+            <h4>AWS EKS · OKE · any K8s → OCI</h4>
+            <p>FluentD (logs) + Management Agent (metrics), deployed by Helm. OKE and AWS EKS documented.</p>
+            <span class="recipe__repo">oracle-quickstart/oci-kubernetes-monitoring ↗</span>
+          </a>
+          <a class="recipe" href="https://github.com/adibirzu/oci-splunk" target="_blank" rel="noopener">
+            <span class="recipe__dir recipe__dir--out">OCI → Splunk</span>
+            <h4>OCI → Splunk SIEM</h4>
+            <p>Kafka Connect streaming from OCI into Splunk indexes for SIEM correlation.</p>
+            <span class="recipe__repo">adibirzu/oci-splunk ↗</span>
+          </a>
+          <a class="recipe" href="https://github.com/adibirzu/oci2azurelogs" target="_blank" rel="noopener">
+            <span class="recipe__dir recipe__dir--out">OCI → Sentinel</span>
+            <h4>OCI → Event Hub &amp; Microsoft Sentinel</h4>
+            <p>Timer-triggered Azure Function reads OCI Streaming, enriches, and ships to Sentinel — E2E tested.</p>
+            <span class="recipe__repo">adibirzu/oci2azurelogs ↗</span>
+          </a>
+          <a class="recipe" href="https://github.com/adibirzu/LoggingAnalyticsFiles" target="_blank" rel="noopener">
+            <span class="recipe__dir recipe__dir--build">LA content</span>
+            <h4>Log Analytics sources &amp; parsers</h4>
+            <p>Reusable Logging Analytics sources and parsers for security and operations use cases.</p>
+            <span class="recipe__repo">adibirzu/LoggingAnalyticsFiles ↗</span>
+          </a>
+          <a class="recipe" href="https://github.com/adibirzu/oci-zpr-visibility" target="_blank" rel="noopener">
+            <span class="recipe__dir recipe__dir--build">ZPR → LA</span>
+            <h4>Zero Trust Packet Routing visibility</h4>
+            <p>Collect and correlate ZPR flows into Log Analytics detection dashboards.</p>
+            <span class="recipe__repo">adibirzu/oci-zpr-visibility ↗</span>
+          </a>
+          <a class="recipe" href="https://github.com/adibirzu/octo-observability-demo" target="_blank" rel="noopener">
+            <span class="recipe__dir recipe__dir--build">Reference</span>
+            <h4>End-to-end observability demo</h4>
+            <p>Shop + CRM + Java sidecar with APM, Monitoring and Log Analytics assets, load and autoscaling.</p>
+            <span class="recipe__repo">adibirzu/octo-observability-demo ↗</span>
+          </a>
+        </div>
+
         <div class="section__head reveal" style="margin:var(--space-8) 0 var(--space-5)">
           <span class="eyebrow">Isolation and RBAC</span>
           <h3 style="font-size:var(--text-xl)">Per-tenant boundaries, by compartment and IAM</h3>

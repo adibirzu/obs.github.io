@@ -71,6 +71,21 @@ A real design also pins down: **agent trust** (Management Agent install keys per
 
 **Five best practices at scale:** (1) establish a common correlation key (transaction ID, ECID), (2) centralize all log sources, (3) build correlated dashboards, (4) automate alerts and anomaly detection, (5) embed observability into the design.
 
+### Ingestion recipes (open-source)
+
+Every arrow on the diagram maps to working code — mix and match to ingest from any cloud into OCI Log Analytics, or fan OCI telemetry out to a third-party SIEM:
+
+| Direction | Recipe | Repo |
+|---|---|---|
+| **GCP → OCI** | Stream GCP Cloud Logging into OCI Log Analytics — serverless, no VMs | [`adibirzu/gcplogs2oci`](https://github.com/adibirzu/gcplogs2oci) |
+| **Azure → OCI** | Forward Azure Monitor platform & resource logs into OCI Log Analytics | [`adibirzu/azurelogs2oci`](https://github.com/adibirzu/azurelogs2oci) |
+| **Kubernetes → OCI** | AWS EKS / OKE / any K8s → OCI: FluentD (logs) + Management Agent (metrics) via Helm | [`oracle-quickstart/oci-kubernetes-monitoring`](https://github.com/oracle-quickstart/oci-kubernetes-monitoring) |
+| **OCI → Splunk** | Kafka Connect streaming from OCI into Splunk indexes | [`adibirzu/oci-splunk`](https://github.com/adibirzu/oci-splunk) |
+| **OCI → Sentinel** | Timer-triggered Azure Function: OCI Streaming → Event Hub → Microsoft Sentinel (enriched, E2E tested) | [`adibirzu/oci2azurelogs`](https://github.com/adibirzu/oci2azurelogs) |
+| **LA content** | Reusable Logging Analytics sources & parsers for security/ops | [`adibirzu/LoggingAnalyticsFiles`](https://github.com/adibirzu/LoggingAnalyticsFiles) |
+| **ZPR → LA** | Zero Trust Packet Routing flow visibility → Log Analytics detection dashboards | [`adibirzu/oci-zpr-visibility`](https://github.com/adibirzu/oci-zpr-visibility) |
+| **Reference** | End-to-end observability demo (APM · Monitoring · Log Analytics) | [`adibirzu/octo-observability-demo`](https://github.com/adibirzu/octo-observability-demo) |
+
 References (public): [OCI Log Analytics](https://www.oracle.com/manageability/log-analytics/) · [docs](https://docs.oracle.com/en-us/iaas/log-analytics/home.htm) · [ingest via Service Connector](https://docs.oracle.com/en-us/iaas/log-analytics/doc/ingest-logs-from-other-oci-services-using-service-connector.html) · [ingest from OCI Streaming](https://docs.oracle.com/en-us/iaas/log-analytics/doc/ingest-custom-logs-from-oci-streaming-service-using-service-connector.html) · [collect from Object Storage](https://docs.oracle.com/en-us/iaas/log-analytics/doc/collect-logs-from-your-oci-object-storage-bucket.html) · [3rd-party SIEM via log shippers](https://docs.oracle.com/en/learn/ocilogs-log-shipper/index.html) · [Kubernetes monitoring solution](https://docs.oracle.com/en-us/iaas/log-analytics/doc/kubernetes-solution.html) · [LiveLabs](https://livelabs.oracle.com/).
 
 > Diagrams for both the multicloud aggregation model and the IAM scoping model are in [`assets/diagrams/`](assets/diagrams/) (`observability-multitenant.svg`, `observability-scope.svg`).

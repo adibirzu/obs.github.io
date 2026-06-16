@@ -495,6 +495,18 @@ button.dchip:hover { border-color: var(--l4); background: var(--surface-card); b
 .l5pill--op { background: var(--l5-tint); border-color: var(--l5); color: var(--l5); }
 .l5scale .arrow { color: var(--stone-400); }
 
+/* ingestion recipe gallery (multitenancy) */
+.recipes { display: grid; grid-template-columns: repeat(auto-fill, minmax(264px, 1fr)); gap: var(--space-4); }
+.recipe { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); padding: var(--space-4); background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); text-decoration: none; color: inherit; transition: transform .2s var(--ease-out), box-shadow .2s var(--ease-out), border-color .2s var(--ease-out); }
+.recipe:hover, .recipe:focus-visible { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: color-mix(in srgb, var(--ochre) 45%, var(--border-subtle)); outline: none; }
+.recipe__dir { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: .04em; text-transform: uppercase; font-weight: 700; padding: 3px 9px; border-radius: var(--radius-pill); }
+.recipe__dir--in { color: var(--pine); background: color-mix(in srgb, var(--pine) 13%, transparent); }
+.recipe__dir--out { color: var(--plum); background: color-mix(in srgb, var(--plum) 13%, transparent); }
+.recipe__dir--build { color: var(--ocean); background: color-mix(in srgb, var(--ocean) 13%, transparent); }
+.recipe h4 { margin: 0; font-size: var(--text-md); font-weight: var(--weight-semibold); color: var(--text-strong); line-height: 1.3; }
+.recipe p { margin: 0; font-size: var(--text-sm); color: var(--text-muted); flex: 1; line-height: 1.5; }
+.recipe__repo { margin-top: var(--space-1); font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--ochre); word-break: break-all; }
+
 /* inspector "relevant to" personas */
 .i-personas { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin-bottom: var(--space-4); }
 .i-personas:empty { display: none; }

@@ -6600,12 +6600,59 @@ def call_inventory_service():
     <script src="assets/resources.js"></script>
     <script src="assets/launchpad-resources.js"></script>
     <script>
-      /* Launchpad "follow the path" — steps without a module open the guide. */
-      document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll(".lp-step__btn[data-href]").forEach((b) => {
-          b.addEventListener("click", () => { window.location.href = b.dataset.href; });
+      /* Launchpad glue: path-stepper guide links + make persona service tags
+         deep-link into the matching launchpad module. */
+      (function () {
+        "use strict";
+        // service label (from personas.js) -> launchpad module id
+        var SVC_TO_MODULE = {
+          "monitoring": "monitoring", "management dashboards": "monitoring",
+          "notifications": "monitoring", "logging": "monitoring",
+          "ops insights": "opsinsights",
+          "apm": "apm", "apm rum": "apm", "apm + opentelemetry": "apm",
+          "log analytics": "loganalytics", "logging analytics": "loganalytics", "audit": "loganalytics",
+          "database management": "dbmgmt",
+          "connector hub": "integrations", "management agent": "integrations",
+          "generative ai (judge)": "ai", "data science": "ai"
+        };
+        function go(mod) {
+          var nav = document.querySelector('.nav-item[data-module="' + mod + '"]');
+          if (nav) { nav.click(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+        }
+        function enhance(scope) {
+          if (!scope) return;
+          scope.querySelectorAll(".tag").forEach(function (t) {
+            if (t.dataset.lpWired) return;
+            var mod = SVC_TO_MODULE[(t.textContent || "").trim().toLowerCase()];
+            if (!mod) return;
+            t.dataset.lpWired = "1";
+            t.classList.add("tag--link");
+            t.setAttribute("role", "button");
+            t.setAttribute("tabindex", "0");
+            t.setAttribute("title", "Open the " + mod + " module");
+            t.addEventListener("click", function () { go(mod); });
+            t.addEventListener("keydown", function (e) {
+              if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(mod); }
+            });
+          });
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+          // path-stepper steps that have no module → open the guide
+          document.querySelectorAll(".lp-step__btn[data-href]").forEach(function (b) {
+            b.addEventListener("click", function () { window.location.href = b.dataset.href; });
+          });
+          // Both #personaGrid and #startResult are populated by personas.js,
+          // whose DOMContentLoaded listener may run after this one. Enhance now
+          // and also observe, so we catch whichever order they render in.
+          ["personaGrid", "startResult"].forEach(function (id) {
+            var node = document.getElementById(id);
+            if (!node) return;
+            enhance(node);
+            new MutationObserver(function () { enhance(node); })
+              .observe(node, { childList: true, subtree: true });
+          });
         });
-      });
+      })();
     </script>
 </body>
 </html>

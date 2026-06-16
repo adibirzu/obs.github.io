@@ -10205,3 +10205,8 @@ a.service-card {
 .lp-step__t { font-family: var(--font-display); font-size: 1rem; color: var(--text-primary); line-height: 1.2; }
 .lp-step__d { font-size: 0.78rem; line-height: 1.4; color: var(--text-tertiary); flex: 1; }
 .lp-step__to { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; color: var(--lv); margin-top: 0.35rem; }
+
+/* clickable persona service tags (deep-link to launchpad modules) */
+#startResult .tag--link, #personaGrid .tag--link { cursor: pointer; border-color: color-mix(in srgb, var(--oci-red) 40%, var(--border-subtle)); transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+#startResult .tag--link::after, #personaGrid .tag--link::after { content: "→"; margin-left: 0.3rem; opacity: 0.55; font-size: 0.85em; }
+#startResult .tag--link:hover, #startResult .tag--link:focus-visible, #personaGrid .tag--link:hover, #personaGrid .tag--link:focus-visible { background: var(--oci-red); color: #fff; border-color: var(--oci-red); outline: none; }

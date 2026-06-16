@@ -411,40 +411,73 @@
       <div class="wrap">
         <div class="section__head reveal">
           <span class="steptag"><b>L5</b> · custom build, not out of the box</span>
-          <h2>From one tenancy to multitenancy, at scale</h2>
-          <p>At tenancy level, observability access is scoped by compartment and IAM. The same governed model then scales out — by environment, by project, and ultimately across tenancies — for operators running <b>OCI Alloy</b>, <b>Dedicated Region (DRCC)</b>, or a multitenant <b>ISV / SaaS</b> platform.</p>
+          <h2>Multitenancy and observability at scale</h2>
+          <p>The multitenant approach is not just access scoping. The real model is <b>centralized aggregation</b>: collect telemetry from every tenant and every cloud, aggregate it in <b>OCI Log Analytics</b>, correlate it by a common key, and analyse it with machine learning and GenAI — while keeping each tenant isolated by compartment and IAM. This is a custom build on the native services for operators running <b>OCI Alloy</b>, <b>Dedicated Region (DRCC)</b>, or a multitenant <b>ISV / SaaS</b> platform.</p>
         </div>
 
+        <figure class="lzfig reveal">
+          <img src="assets/diagrams/observability-multitenant.svg" alt="Multitenant observability at scale: per-tenant multicloud sources (OCI, Oracle Database@Azure, AWS, GCP, on-premises, Fusion SaaS, OKE) are collected by Management Agent, Service Connector Hub, Streaming and Object Storage, Functions, FluentD/Fluent-Bit/OpenTelemetry and direct upload, aggregated into a central OCI Log Analytics that ingests 300-plus sources, clusters and correlates with link analysis and detection rules and tiered storage and LoganAI, and is surfaced to an operator cross-tenant fleet view, dashboards, alarms, and per-tenant views — with per-tenant isolation by compartment and IAM." loading="lazy" width="1180" height="600" />
+          <figcaption>
+            <span>Collect from everywhere → aggregate in OCI Log Analytics → analyse with ML and GenAI → operate one fleet view, with per-tenant isolation by compartment and IAM.</span>
+          </figcaption>
+        </figure>
+
+        <div class="section__head reveal" style="margin:var(--space-7) 0 var(--space-5)">
+          <span class="eyebrow">Ingest from anywhere</span>
+          <h3 style="font-size:var(--text-xl)">One platform, every source</h3>
+        </div>
+        <div class="l5scale reveal" style="gap:var(--space-2)">
+          <span class="l5pill">Management Agent</span>
+          <span class="l5pill">Service Connector Hub</span>
+          <span class="l5pill">Streaming &amp; Object Storage</span>
+          <span class="l5pill">OCI Functions</span>
+          <span class="l5pill">FluentD · Fluent-Bit · OpenTelemetry</span>
+          <span class="l5pill">Direct upload (API / UI)</span>
+        </div>
+        <p class="reveal" style="color:var(--text-muted);font-size:var(--text-sm);margin-top:var(--space-3)">OCI Log Analytics ingests from OCI, on-premises, AWS, Azure, Google Cloud, and SaaS — 300+ out-of-the-box sources, tiered active-plus-archive storage, ML clustering and link analysis, detection rules, and LoganAI (AI explanations, agentic MCP, RAG dashboards).</p>
+
+        <div class="section__head reveal" style="margin:var(--space-8) 0 var(--space-5)">
+          <span class="eyebrow">Isolation and RBAC</span>
+          <h3 style="font-size:var(--text-xl)">Per-tenant boundaries, by compartment and IAM</h3>
+          <p>Within each tenancy, access is scoped by compartment and IAM — Tenancy, Platform, and Environment / Project observability teams, each an admin and a reader OCI group. Adding a tenant, environment, or project is repetition: clone the compartment, group, and policy.</p>
+        </div>
         <figure class="lzfig reveal">
           <img src="assets/diagrams/observability-scope.svg" alt="OCI observability IAM scoping: Tenancy, Platform, and Environment or Project observability teams, each with admin and reader OCI groups, mapped to Landing Zone compartments under one Common Identity Domain, with a shared monitoring hub that scales by repetition." loading="lazy" width="1180" height="660" />
           <figcaption>
             <span>Scope = compartment + policy. Three observability teams (Tenancy · Platform · Environment), each with an admin and a reader OCI group, mapped to the Landing Zone compartments.</span>
-            <span class="lzfig__src">Model: <a href="https://github.com/oci-landing-zones/oci-landing-zone-operating-entities/tree/obs_v2/addons/oci-db-observability" target="_blank" rel="noopener">OCI Database Observability at Scale — official LZ add-on (obs_v2)</a></span>
+            <span class="lzfig__src">Reference: <a href="https://github.com/oci-landing-zones/oci-landing-zone-operating-entities/tree/obs_v2/addons/oci-db-observability" target="_blank" rel="noopener">OCI Database Observability — official LZ add-on (obs_v2)</a></span>
           </figcaption>
         </figure>
 
-        <div class="tier3 reveal">
-          <article class="tier3card" style="--tc:var(--l3)">
-            <h3>Tenancy level</h3>
-            <p>One landing zone, one Common Identity Domain. A central <b>Tenancy Observability</b> team (admin + reader) owns O&amp;M and the DBM/OPSI private endpoints across every compartment. A shared monitoring hub holds a global private endpoint reused across the estate — conserving private-endpoint service limits.</p>
-          </article>
-          <article class="tier3card" style="--tc:var(--l2)">
-            <h3>Platform &amp; environment</h3>
-            <p><b>Platform</b> and <b>Environment / Project</b> teams take narrower scopes — the shared platform, or one environment (Prod, Pre-prod) and its projects. Adding an environment or project is repetition: clone the compartment, group, and policy. The model grows without redesign.</p>
-          </article>
-          <article class="tier3card" style="--tc:var(--l5)">
-            <h3>L5 · Operator / multitenancy</h3>
-            <p>For Alloy, DRCC, and ISV platforms, replicate the per-tenant model and aggregate at the <b>operator</b> level: per-tenant isolation for each customer, plus a cross-tenant view for fleet SLOs, capacity, and chargeback. This is a <b>custom build</b> on top of the native services — not an out-of-the-box product.</p>
-          </article>
-        </div>
-
-        <div class="l5scale reveal">
+        <div class="l5scale reveal" style="margin-top:var(--space-6)">
           <span class="l5scale__k">Scales by repetition</span>
           <span class="l5pill">Compartment</span><span class="arrow">→</span>
           <span class="l5pill">Environment</span><span class="arrow">→</span>
           <span class="l5pill">Project</span><span class="arrow">→</span>
           <span class="l5pill l5pill--op">Tenant</span><span class="arrow">→</span>
           <span class="l5pill l5pill--op">Operator fleet</span>
+        </div>
+
+        <div class="section__head reveal" style="margin:var(--space-8) 0 var(--space-5)">
+          <span class="eyebrow">Best practices at scale</span>
+          <h3 style="font-size:var(--text-xl)">Five steps that make it work</h3>
+        </div>
+        <ol class="bp5 reveal">
+          <li><b>Establish a common correlation key.</b> A business identifier (transaction ID, ECID, order ID) carried across logs, metrics, and traces — the anchor for cross-system correlation.</li>
+          <li><b>Centralize all log sources.</b> Ingest into Log Analytics through Service Connector Hub and Management Agents; normalize with consistent timestamping and tagging.</li>
+          <li><b>Create correlated dashboards.</b> Use-case-focused views (audit, security, performance) that overlay logs, metrics, and traces with drill-down by the correlation key.</li>
+          <li><b>Automate alerts and anomaly detection.</b> Pattern-based alerts plus ML anomaly detection on volumes, durations, and access patterns, wired to Events for response.</li>
+          <li><b>Embed observability into the design.</b> Make log tagging and context propagation part of every new integration — a business enabler, not a post-deployment add-on.</li>
+        </ol>
+
+        <div class="refrow reveal">
+          <span class="refrow__k">References</span>
+          <a href="https://www.oracle.com/manageability/log-analytics/" target="_blank" rel="noopener">OCI Log Analytics — product</a>
+          <a href="https://docs.oracle.com/en-us/iaas/log-analytics/home.htm" target="_blank" rel="noopener">Log Analytics documentation</a>
+          <a href="https://docs.oracle.com/en-us/iaas/log-analytics/doc/oci-logging-analytics-architecture.html" target="_blank" rel="noopener">Architecture overview</a>
+          <a href="https://livelabs.oracle.com/pls/apex/r/dbpm/livelabs/livelabs-workshop-cards?clear=100&search=log%20analytics" target="_blank" rel="noopener">LiveLabs workshops</a>
+          <a href="https://www.ateam-oracle.com/" target="_blank" rel="noopener">A-Team best-practice blogs</a>
+          <a href="https://www.oracle.com/cloud/free/" target="_blank" rel="noopener">cloud.oracle.com/loganalytics</a>
         </div>
       </div>
     </section>

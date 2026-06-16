@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 600" font-family="Figtree, Arial, sans-serif" role="img" aria-label="Multitenant observability at scale: per-tenant multicloud sources are collected by Management Agent, Service Connector Hub, Streaming and Object Storage, Functions, FluentD/Fluent-Bit and direct upload, aggregated into a central OCI Log Analytics, analysed with clustering, link analysis, detection rules and LoganAI, and surfaced to operator dashboards — with per-tenant isolation by compartment and IAM.">
+  <defs>
+    <marker id="m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>
+    <style>.t{font-family:Georgia,serif}.mut{fill:#5A6160}.mono{font-family:'JetBrains Mono',monospace;font-size:10px}</style>
+  </defs>
+  <rect width="1180" height="600" fill="#FBF9F8"/>
+  <text class="t" x="40" y="38" font-size="22" fill="#1C1A19">Multitenancy at scale — collect from everywhere, aggregate in OCI Log Analytics.</text>
+  <text x="40" y="60" font-size="12.5" class="mut">Per-tenant isolation by compartment and IAM; one operator view across the fleet, correlated by a common key.</text>
+
+  <!-- col headers -->
+  <text class="mono" x="60" y="98" fill="#315357" font-weight="700">1 · TENANTS &amp; SOURCES (MULTICLOUD)</text>
+  <text class="mono" x="430" y="98" fill="#04536F" font-weight="700">2 · COLLECT</text>
+  <text class="mono" x="700" y="98" fill="#C58C52" font-weight="700">3 · AGGREGATE &amp; ANALYSE</text>
+  <text class="mono" x="1000" y="98" fill="#C74634" font-weight="700">4 · OPERATE</text>
+
+  <!-- tenants -->
+  <g>
+    <g transform="translate(40,112)"><rect width="330" height="118" rx="10" fill="#E3ECEB" stroke="#315357"/>
+      <text class="mono" x="14" y="24" fill="#315357" font-weight="700">Tenant A</text>
+      <text x="14" y="46" font-size="11.5" class="mut">OCI · Oracle DB@Azure · AWS · GCP</text>
+      <text x="14" y="64" font-size="11.5" class="mut">On-prem · Fusion SaaS · OIC · OKE</text>
+      <text x="14" y="90" font-size="11" fill="#3F6B4A">apps · databases · containers · OS · audit logs</text>
+    </g>
+    <g transform="translate(40,238)"><rect width="330" height="56" rx="10" fill="#fff" stroke="#9DBBA8"/><text class="mono" x="14" y="24" fill="#315357" font-weight="700">Tenant B</text><text x="14" y="42" font-size="11" class="mut">same governed pattern, isolated compartment</text></g>
+    <g transform="translate(40,302)"><rect width="330" height="56" rx="10" fill="#fff" stroke="#9DBBA8"/><text class="mono" x="14" y="24" fill="#315357" font-weight="700">Tenant N</text><text x="14" y="42" font-size="11" class="mut">replicate by repetition — compartment + group + policy</text></g>
+  </g>
+
+  <!-- collectors -->
+  <g font-size="11.5" fill="#1C1A19">
+    <g transform="translate(420,112)"><rect width="220" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="25">Management Agent</text></g>
+    <g transform="translate(420,158)"><rect width="220" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="25">Service Connector Hub</text></g>
+    <g transform="translate(420,204)"><rect width="220" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="25">Streaming &amp; Object Storage</text></g>
+    <g transform="translate(420,250)"><rect width="220" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="25">OCI Functions</text></g>
+    <g transform="translate(420,296)"><rect width="220" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="25">FluentD · Fluent-Bit · OTel</text></g>
+    <g transform="translate(420,342)"><rect width="220" height="40" rx="8" fill="#DCE7EC" stroke="#04536F"/><text x="14" y="25">Direct upload (API / UI)</text></g>
+  </g>
+
+  <!-- central Log Analytics -->
+  <g transform="translate(690,112)">
+    <rect width="320" height="318" rx="12" fill="#FBF1D8" stroke="#C58C52" stroke-width="1.5"/>
+    <text class="t" x="18" y="30" font-size="16" fill="#A8702F">Central OCI Log Analytics</text>
+    <g font-size="11.5" fill="#2A2F2F">
+      <g transform="translate(18,46)"><rect width="284" height="40" rx="7" fill="#fff" stroke="#E4D9C0"/><text x="12" y="25">Ingest &amp; enrich · 300+ out-of-box sources</text></g>
+      <g transform="translate(18,92)"><rect width="284" height="40" rx="7" fill="#fff" stroke="#E4D9C0"/><text x="12" y="25">Clustering · outliers · link analysis</text></g>
+      <g transform="translate(18,138)"><rect width="284" height="40" rx="7" fill="#fff" stroke="#E4D9C0"/><text x="12" y="25">Detection rules · derived store</text></g>
+      <g transform="translate(18,184)"><rect width="284" height="40" rx="7" fill="#fff" stroke="#E4D9C0"/><text x="12" y="25">Tiered storage (active + archive)</text></g>
+      <g transform="translate(18,230)"><rect width="284" height="44" rx="7" fill="#F6E1DC" stroke="#E4B5AC"/><text x="12" y="20" fill="#C74634" font-weight="700">LoganAI / GenAI</text><text x="12" y="37" font-size="10.5" class="mut">AI explanations · agentic (MCP) · RAG dashboards</text></g>
+    </g>
+  </g>
+
+  <!-- operate -->
+  <g transform="translate(1010,112)">
+    <g transform="translate(0,0)"><rect width="150" height="58" rx="9" fill="#fff" stroke="#A9C0CC"/><text class="t" x="14" y="26" font-size="13" fill="#04536F">Operator</text><text x="14" y="44" font-size="10.5" class="mut">cross-tenant fleet view</text></g>
+    <g transform="translate(0,72)"><rect width="150" height="50" rx="9" fill="#fff" stroke="#A9C0CC"/><text x="14" y="22" font-size="11.5">Dashboards</text><text x="14" y="38" font-size="10" class="mut">SLOs · capacity · chargeback</text></g>
+    <g transform="translate(0,134)"><rect width="150" height="44" rx="9" fill="#fff" stroke="#A9C0CC"/><text x="14" y="20" font-size="11.5">Alarms · Notifications</text></g>
+    <g transform="translate(0,190)"><rect width="150" height="44" rx="9" fill="#fff" stroke="#A9C0CC"/><text x="14" y="20" font-size="11.5">Per-tenant tenant view</text></g>
+  </g>
+
+  <!-- arrows -->
+  <g fill="none" stroke-width="1.6">
+    <path d="M370 175 L418 175" stroke="#5A6160" marker-end="url(#m)" color="#5A6160"/>
+    <path d="M370 266 L418 266" stroke="#5A6160" marker-end="url(#m)" color="#5A6160" opacity=".6"/>
+    <path d="M370 330 L418 318" stroke="#5A6160" marker-end="url(#m)" color="#5A6160" opacity=".6"/>
+    <path d="M640 250 L688 250" stroke="#C58C52" marker-end="url(#m)" color="#C58C52"/>
+    <path d="M1010 250 L992 200" stroke="#C74634" marker-end="url(#m)" color="#C74634"/>
+  </g>
+
+  <text x="40" y="470" font-size="12.5" class="mut">Isolation by compartment + IAM (see the scoping model below) · correlate everything by a common key — ECID, transaction ID, or business ID.</text>
+</svg>
